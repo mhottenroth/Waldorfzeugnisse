@@ -1,0 +1,11 @@
+Can't recognise 'uname -ms' as an internal or external command, or batch script.
+Path not found.
+
+Path not found.
+
+Path not found.
+
+Path not found.
+
+Path not found.
+

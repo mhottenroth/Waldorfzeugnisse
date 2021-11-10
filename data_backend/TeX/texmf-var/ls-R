@@ -1,0 +1,20 @@
+% ls-R -- filename database for kpathsea; do not change this line.
+
+./:
+.:
+fonts
+web2c
+ls-R
+
+./fonts:
+cache
+
+./fonts/cache:
+readme.txt
+
+./web2c:
+xetex
+
+./web2c/xetex:
+xetex.fmt
+xelatex.fmt

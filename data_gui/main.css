@@ -1,0 +1,414 @@
+@font-face {
+  font-family: Titillium;
+  src: url("./fonts/TitilliumWeb-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Titillium;
+  font-weight: bold;
+  src: url("./fonts/TitilliumWeb-Bold.ttf") format("truetype");
+}
+
+body{
+  background-color: #FFF5F0
+}
+
+*{
+  color: #280A0A;
+}
+
+*, th{
+  font-size: 12px;
+  font-family: Titillium;
+}
+
+table, td, tr, th{
+  padding: 0px;
+  margin: 0px;
+}
+
+#place{
+  font-size: 22;
+  left: 115;
+  letter-spacing: 0.4px;
+  top: 69.8
+}
+
+.subjectInfoPage{
+  opacity: 1;
+  transition: opacity 0.75s
+}
+
+#overlay_background,
+#overlay_infocanvas,
+#overlay_calendar{
+  transition: opacity 0.5s
+}
+
+#overlay_certGeneration{
+  transition: opacity 0.5s, height 1s, top 1s;
+}
+
+
+#overlay_calendar{
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #280A0A;
+  background-color: #FAF5F5;
+}
+
+.button_calendar_day{
+  background-color: transparent;
+  color: #280A0A;
+  font-weight: normal;
+  border: none
+}
+
+#button_calendar_year_less,
+#button_calendar_month_less,
+#button_calendar_year_more,
+#button_calendar_month_more{
+  background-color: transparent;
+  color: #A37A7A;
+  font-weight: normal;
+  border: none
+}
+
+#button_calendar_year_less:hover,
+#button_calendar_month_less:hover,
+#button_calendar_year_more:hover,
+#button_calendar_month_more:hover{
+  color: #280A0A;
+}
+
+#tableHeader,
+#pupilsEditCell,
+#subjectsEditCell,
+#evaluationWidget,
+#finalRemarks{
+  background-color: #FAF5F5
+}
+
+.button_session{
+  border: none;
+  background-color: transparent;
+  color: #DCC8C8;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  transition: filter 0.5s
+}
+
+.button_session:hover{
+  background-color: transparent;
+  filter: brightness(20%);
+}
+
+
+
+#pupilsEditCell{
+  width: 80ch;
+  min-width: 80ch
+}
+
+#subjectsEditCell{
+  width: 60ch;
+  min-width: 60ch;
+}
+
+#buttonsTable_subjects{
+  width: 100%
+}
+
+#evaluationWidget{
+  width: 60ch;
+  min-width: 60ch;
+}
+
+#finalRemarks{
+  width: 60ch;
+  min-width: 60ch
+}
+
+#table_editSubjects{
+  width: 100%
+}
+
+#pupilsTable_firstName:hover,
+#pupilsTable_lastName:hover{
+  text-decoration: underline
+}
+
+
+div#pupilTableWrapper{
+  height: 500px;
+  overflow-y: scroll
+}
+
+button{
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+.button_cancel{
+  background-color: transparent;
+  border: none;
+  color: #C66666;
+  padding: 0px;
+  font-size: 18;
+  margin-top: -6px;
+  opacity: 0.5
+}
+
+.button_cancel:hover{
+  background-color: transparent;
+  border: none;
+  opacity: 1
+}
+
+
+#overlay_certGeneration_explaination,
+#overlay_certGeneration_button_generate{
+  transition: opacity 2s
+}
+
+
+button:disabled{
+  /*background-color: #E8CCBA;
+  background-color: rgba(232,153,102,0.5);*/
+  opacity: 0.5
+}
+
+#eurythmieTable tr:nth-of-type(2) > td{
+  padding-top: 2px;
+}
+
+#class_date_container input{
+  text-align: right;
+  width: 15ch;
+}
+
+#class_date_container button{
+  width: 24px
+}
+
+#list_subjects,
+.input_eurythmieRow{
+  width: 100%
+}
+
+.subjectInfoPage{
+  transition: display 3s;
+}
+
+#eurythmieabschluss_lastLine > td{
+  padding-bottom: 5.45em
+}
+
+input[type=text],
+button{
+  padding: 0px 5px;
+  min-height: 1.75m;
+  height: 1.75em;
+  -webkit-appearance: none;
+}
+
+button{
+  background-color: rgba(232,153,102,1);
+  color: #fff;
+  font-weight: bold;
+}
+
+button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):not(:disabled):hover{
+  background-color: #F7AC7C;
+}
+
+button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):hover:active{
+  background-color: rgba(220,150,110,1);
+}
+
+
+
+#button_applyTeacherToAll{
+  width: 203px
+}
+
+input,
+input:disabled{
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #000;
+}
+
+
+
+
+#t01,
+#eurythmieTable{
+  border: 1px solid #930;
+  background-color: #fff5f0;
+  border-spacing: 0px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#t01 tr td:last-of-type,
+#eurythmieTable tr td:last-of-type{
+  padding-right: 5px;
+}
+
+#t01 td,
+#eurythmieTable td{
+  padding-left: 5px;
+  padding-bottom: 2px;
+}
+
+#logo{
+  height: 80px;
+  width: auto;
+  display: inline-block;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+#logoAndCredits,
+#class_date_container{
+  min-height: 95px
+}
+
+#class_date_container{
+  padding-top: 9px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 19px;
+}
+
+
+#mainControls{
+  border: 1px solid black;
+}
+
+
+#tableHeader{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+hr{
+  background: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%);
+  height: 1px;
+  border: none
+}
+
+
+#table_editEvaluation{
+  padding-top: 2.85em
+}
+
+
+
+#logoAndCredits{
+  display: flex;
+  border-radius: 10px;
+  background: rgb(237,123,130);
+  background: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%); 
+  color: #fff;
+  margin-left: 5px;
+}
+
+#nameAndCredits{
+  vertical-align:top; 
+  padding-top: 4px;
+  padding-right: 10px;
+}
+
+#programName,
+#author{
+  color: #fff;
+}
+
+#buttons_container{
+  display: block;
+}
+
+#subjects{
+  height: 100%;
+  display: flex;
+  border: 1px solid black;
+}
+
+tr:nth-child(odd){
+  /*background: #eee;*/
+}
+
+tr:nth-child(even){
+  background: unset;
+}
+
+th{
+  border-bottom: 1px solid black;
+  font-weight: normal;
+  font-size: small;
+}
+
+caption{
+  font-weight: bold;
+}
+
+#header{
+  background-color: transparent;
+}
+
+#class_date_container{
+  display: flex;
+  padding: 6px;
+  padding-left: 20px;
+}
+
+#saveRow_pupils > td{
+  padding-top: 3.75em;
+}
+
+#saveRow_subjects > td{
+  padding-top: 1em;
+}
+
+#overlay_calendar table{
+  border-collapse: collapse
+}
+
+
+.calendar_dateButton{
+  font-weight: normal;
+  width: 4ch;
+  height: 1.5em;
+  text-align: center;
+  background-color: transparent;
+  color: #280A0A;
+  border: none
+}
+
+
+button.calendar_dateButton:hover{
+  background-color: #FFC88C;  
+}
+
+
+.calendar_weeknumber{
+  width: 4ch;
+  background-color: #FFC88C;
+  text-align: center;
+}
+
+
+.calendar_weekday{
+  height: 2em;
+  text-align: center;
+  background-color: #FFC88C;
+}
+
