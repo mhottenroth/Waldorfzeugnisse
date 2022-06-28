@@ -179,8 +179,8 @@ for i = 0, #SESSION do
     -- compile TeX file to PDF; execute command twice to get correct number of last page within PDF document
     if OS == "Linux" or OS == "Darwin" then
       os.execute("cd \""..outputDir.."\"; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error -output-directory=\""..outputDir.."\" \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error -output-directory=\""..outputDir.."\" \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null"
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" ; "..
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" "
       )
 
       -- Cleanup.
@@ -189,8 +189,8 @@ for i = 0, #SESSION do
       os.remove(outputDir.."/"..p.firstName.." "..p.lastName..".log")
     else
       os.execute("cd \""..outputDir.."\" & "..
-				" \""..XeTeXBinFile.."\" -halt-on-error -output-directory=\""..outputDir.."\" \""..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex\" 1>nul & "..
-				" \""..XeTeXBinFile.."\" -halt-on-error -output-directory=\""..outputDir.."\" \""..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex\" 1>nul "
+				" \""..XeTeXBinFile.."\" -halt-on-error \""..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex\" 1>nul & "..
+				" \""..XeTeXBinFile.."\" -halt-on-error \""..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex\" 1>nul "
 			)
 
       -- Cleanup.

@@ -14,6 +14,6 @@ chcp 1252
 
 cd "%~dp0/"
 
-set sessionFile="Sitzung Klasse 11A_2.txt"
+set sessionFile=""
 
 cmd /u /c %cd%/ulua/lua.cmd %cd%/schoolCert.lua %sessionFile% 2>%cd%/errors_main.txt

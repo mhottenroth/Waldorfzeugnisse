@@ -2,9 +2,9 @@
 
   <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="./data_gui/main.css">
+    <link rel="stylesheet" href="data_gui/main.css">
     <title>Waldorfzeugnisprogramm</title>
-    <link rel="shortcut icon" type="image/svg" href="./data_gui/images/favicon.svg"/>
+    <link rel="shortcut icon" type="image/svg" href="data_gui/images/favicon.svg"/>
   </head>
 
   <body>
@@ -103,7 +103,7 @@
               <!-- Logo and credits. -->
               <td>
                 <div id="logoAndCredits">
-                  <img src="./data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
+                  <img src="data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
                   <div id="nameAndCredits"><b id="programName" style="font-size: 18px">Zeugnisprogramm</b> <br> <div id="author">Marcus Hottenroth (2021)</div></div>
                 </div>
               </td>
@@ -2069,7 +2069,7 @@
     function generateCertGenerationFile(e){
       const sessionFileName = document.getElementById("input_path_sessionFile").value
       var scriptContent_Unix = '%23!/usr/bin/env bash%0A%0Acd "$(dirname "$0")"%0A%0AsessionFile="' + sessionFileName + '"%0A%0Axterm -e "$(pwd)/../data_backend/ulua/lua" "$(pwd)/../data_backend/schoolCert.lua" "$sessionFile" 2>./errors_main.txt'
-      var scriptContent_Win = 'chcp 1252%0A%0Acd "%25~dp0/"%0A%0Aset sessionFile="' + sessionFileName + '"%0A%0Acmd /u /c %25cd%25/../data_backend/ulua/lua.cmd %25cd%25/../data_backend/schoolCert.lua %25sessionFile%25 2>%25cd%25/errors_main.txt'
+      var scriptContent_Win = 'chcp 1252%0A%0Acd "%25~dp0/"%0A%0Aset sessionFile="' + sessionFileName + '"%0A%0A"%25cd%25/../data_backend/ulua/lua.cmd" "%25cd%25/../data_backend/schoolCert.lua" %25sessionFile%25 2>%25cd%25/errors_main.txt'
 
       console.log(scriptContent_Unix)
       console.log(scriptContent_Win)
