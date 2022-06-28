@@ -179,8 +179,8 @@ for i = 0, #SESSION do
     -- compile TeX file to PDF; execute command twice to get correct number of last page within PDF document
     if OS == "Linux" or OS == "Darwin" then
       os.execute("cd \""..outputDir.."\"; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" ; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" "
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null; "..
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null"
       )
 
       -- Cleanup.
