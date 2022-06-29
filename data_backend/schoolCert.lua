@@ -110,6 +110,13 @@ for i = 0, #SESSION do
     code_TeX = code_TeX:gsub("PLACE%-LOGO", SESSION.place:upper())
     code_TeX = code_TeX:gsub("PLACE", SESSION.place)
 
+    -- Set the marks overview table format.
+    if SESSION.class:match("[0-9]+A") then
+      code_TeX = code_TeX:gsub("MARKS-FORMAT", '\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0')
+    else
+      code_TeX = code_TeX:gsub("MARKS-FORMAT", '\textbf{Note} & 1 & 2 & 3 & 4 & 5 & 6')
+    end
+
     local date_day, date_month, date_year = SESSION.date:match("(%d%d)%.(%d%d)%.(%d%d%d%d)")
 
     code_TeX = code_TeX:gsub("\\newdate{certDate}{01}{01}{1980}", "\\newdate{certDate}{"..date_day.."}{"..date_month.."}{"..date_year.."}")
@@ -147,9 +154,9 @@ for i = 0, #SESSION do
           s.contents = s.contents and s.contents:gsub("\n\n*", " ") or ""
           s.evaluation = s.evaluation:gsub("\n\n*", " ")
           if j > 0 and SESSION[i].subjects[j-1].name == s.name then
-            code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..s.teacher.."}"
+            code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
           else
-            code_TeX = code_TeX.."\n  \\certText{"..s.name.."}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..s.teacher.."}"
+            code_TeX = code_TeX.."\n  \\certText{"..s.name.."}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
           end
         end
       end
@@ -179,8 +186,8 @@ for i = 0, #SESSION do
     -- compile TeX file to PDF; execute command twice to get correct number of last page within PDF document
     if OS == "Linux" or OS == "Darwin" then
       os.execute("cd \""..outputDir.."\"; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null; "..
-        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" 1>/dev/null"
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" ; "..
+        " \""..XeTeXBinFile.."\" -halt-on-error \""..p.firstName.." "..p.lastName..".tex\" "
       )
 
       -- Cleanup.
@@ -201,7 +208,7 @@ for i = 0, #SESSION do
 			end
 			
 			-- delete expendable files (*.tex, *.log, *.aux)
-			os.remove(outputDir.."/"..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex")			
+			--os.remove(outputDir.."/"..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".tex")			
 			os.remove(outputDir.."/"..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".aux")
       os.remove(outputDir.."/"..replaceUmlauts(p.firstName).." "..replaceUmlauts(p.lastName)..".log")			
     end
