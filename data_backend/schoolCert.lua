@@ -85,6 +85,9 @@ XeTeXBinFile = baseDir.."/data_backend/TeX/bin/"..binVersion
 for i = 0, #SESSION do    
   local p = SESSION[i]
 
+  p.firstName = p.firstName:gsub(" *$", "")
+  p.lastName = p.lastName:gsub(" *$", "")
+
   if p.print then
     if OS == "Windows" then
       local handle = io.popen("echo Erstelle Zeugnis für "..p.firstName.." "..p.lastName.." ... | "..baseDir.."/data_backend/iconv/bin/iconv.exe -f UTF-8 -t ISO-8859-1 2>&1")
@@ -112,9 +115,9 @@ for i = 0, #SESSION do
 
     -- Set the marks overview table format.
     if SESSION.class:match("[0-9]+A") then
-      code_TeX = code_TeX:gsub("MARKS-FORMAT", '\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0')
+      code_TeX = code_TeX:gsub("MARKS%-FORMAT", '\\textbf{Notenpunkte} & 15\\textendash{}13 & 12\\textendash{}10 & 09\\textendash{}07 & 06\\textendash{}04 & 03\\textendash{}01 & 0')
     else
-      code_TeX = code_TeX:gsub("MARKS-FORMAT", '\textbf{Note} & 1 & 2 & 3 & 4 & 5 & 6')
+      code_TeX = code_TeX:gsub("MARKS%-FORMAT", '\\textbf{Note} & 1 & 2 & 3 & 4 & 5 & 6')
     end
 
     local date_day, date_month, date_year = SESSION.date:match("(%d%d)%.(%d%d)%.(%d%d%d%d)")
@@ -150,7 +153,8 @@ for i = 0, #SESSION do
           end
         end
       else
-        if s.name and s.evaluation then
+        if s.name and (s.evaluation or s.contents) then
+          s.evaluation = s.evaluation or ""
           s.contents = s.contents and s.contents:gsub("\n\n*", " ") or ""
           s.evaluation = s.evaluation:gsub("\n\n*", " ")
           if j > 0 and SESSION[i].subjects[j-1].name == s.name then

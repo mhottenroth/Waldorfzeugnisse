@@ -301,7 +301,7 @@
               </tr>
               <tr>
                 <td>Thema:</td>
-                <td><input type="text" id="input_jahresarbeit_topic" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_topic(this)" style="width: 47.2ch"></td>
+                <td><input type="text" id="input_jahresarbeit_topic" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_topic(this); checkTypography(this)" style="width: 47.2ch"></td>
               </tr>
             </table>
             <hr style="margin-bottom: 44px; margin-top: 26px">
@@ -611,13 +611,13 @@
 
     function updateSession_firstName(e){
       var index = e.parentNode.parentNode.cells[2].children[0].innerText
-      SESSION[index - 1].firstName = e.value
+      SESSION[index - 1].firstName = e.value.replace(/ *$/, '').replace(/  */, '')
     }
 
 
     function updateSession_lastName(e){
       var index = e.parentNode.parentNode.cells[2].children[0].innerText
-      SESSION[index - 1].lastName = e.value
+      SESSION[index - 1].lastName = e.value.replace(/ *$/, '').replace(/  */, '')
     }
 
 
@@ -627,7 +627,7 @@
       var value = list.options[index].innerText
 
       for (var p = 0; p < SESSION.length; p++){
-        SESSION[p].subjects[index].name = value
+        SESSION[p].subjects[index].name = value.replace(/ *$/, '').replace(/  */, '')
       }
     }
 
