@@ -170,11 +170,11 @@
 
   \vspace{2\baselineskip}
 
-  \emph{#1}
+  {\itshape #1}
 
   \par
 
-  \emph{#2}
+  {\itshape #2}
 
   \vspace{5\baselineskip}
 
@@ -208,7 +208,7 @@
 
   \par
 
-  \emph{#2}
+  {\itshape #2}
 
   \vspace{5\baselineskip}
 
@@ -239,22 +239,25 @@
 
   \par
 
-  \emph{#4}
+  {\itshape #4}
 
-  \vspace*{5\baselineskip}
-
+  \par 
+  \nopagebreak
+  \bgroup
+  \vspace{5\baselineskip minus 3\baselineskip}
   \setlength{\tabcolsep}{10mm}
 
   \begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
     \rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
     Erstgutachter & Zweitgutachter
   \end{tabular}
-
-  \vspace{2\baselineskip}
+  \nopagebreak
+  \vspace{2\baselineskip minus 0.5\baselineskip}
 
   PLACE, den \certDateFormat\displaydate{certDate}
 
   \renewcommand{\headrulewidth}{0pt}
+  \egroup
 }
 
 

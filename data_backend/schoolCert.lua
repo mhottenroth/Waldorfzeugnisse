@@ -144,7 +144,9 @@ for i = 0, #SESSION do
         end
         if s.name:match("Jahresarbeit") then
           if s.topic and s.firstReader and s.secondReader and s.evaluation then
-            code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation:gsub("\n\n\n*", "\\newline\\newline ").."}"
+            -- Delete trailing newlines, reduce more than one blankline to one, and finally turn single linebreaks (\n) into paragraph limits.
+            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n *\n *\n*", "\\newline\\newline "):gsub("([^\n]) *\n *([^\n])", "%1\\newline\\newline %2")
+            code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation.."}"
           end
         end
         if s.name:match("Klassenspiel") then
