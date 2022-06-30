@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="de">
 
   <head>
@@ -485,8 +485,7 @@
           }
         }
         // Remove keys without values, replace multiple linebreaks and semicolons with one each.
-        s = s.replace(/SESSION[^=]*= "";/g, "").replace(/\n{2,}/g, "\n").replace(/;{2,}/g, ";")
-        console.log(s)
+        s = s.replace(/SESSION[^=]*= "";/g, "").replace(/\n{2,}/g, '\n').replace(/;{2,}/g, ';')
         return s
       }
     }
@@ -596,9 +595,11 @@
     function saveSession(){
       var sessionString = objToString(SESSION)
 
-      console.log(sessionString)
+      console.log("Session after saving: " + sessionString)
 
-      document.getElementById("saveSession_prompt").href = 'data:text/plain;charset=utf-8,' + sessionString
+      var file = new Blob( [ new TextEncoder().encode( sessionString ) ], { type: 'text/plain;charset=utf-8' } )
+
+      document.getElementById("saveSession_prompt").href = URL.createObjectURL(file)
       var c = (document.getElementById("input_class").value != "" && " Klasse " + document.getElementById("input_class").value) || ""
       document.getElementById("saveSession_prompt").download = c + ", Sitzung.txt"
       document.getElementById("saveSession_prompt").click()
