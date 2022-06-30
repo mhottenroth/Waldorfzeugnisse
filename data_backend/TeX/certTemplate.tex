@@ -1,13 +1,13 @@
 \iffalse
-	XeTeX template for school certificates
+  XeTeX template for school certificates
 
-	Copyright © 2019 Marcus Hottenroth
+  Copyright © 2019 Marcus Hottenroth
 
-	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>. 
+  You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>. 
 \fi
 
 \documentclass[a4paper,11pt]{article}
@@ -26,18 +26,18 @@
 % Schriften und Wörterbuch
 \usepackage[ngerman]{babel}
 \setmainfont{TitilliumWeb-Regular.ttf}[
-	Path=../../data_backend/TeX/texmf-dist/fonts/truetype/,
-	LetterSpace=0.3,
-	Scale=1.0,
-	BoldFont=TitilliumWeb-Regular.ttf,
-	BoldFeatures={FakeBold=2.5, FakeStretch=1, Scale=1.0, LetterSpace=3.4},
-	ItalicFont=TitilliumWeb-Regular.ttf,
-	ItalicFeatures={FakeSlant=0.2, Scale=1.0, LetterSpace=0, FakeStretch=0.9}
+  Path=../../data_backend/TeX/texmf-dist/fonts/truetype/,
+  LetterSpace=0.3,
+  Scale=1.0,
+  BoldFont=TitilliumWeb-Regular.ttf,
+  BoldFeatures={FakeBold=2.5, FakeStretch=1, Scale=1.0, LetterSpace=3.4},
+  ItalicFont=TitilliumWeb-Regular.ttf,
+  ItalicFeatures={FakeSlant=0.2, Scale=1.0, LetterSpace=0, FakeStretch=0.9}
 ]
 
 \newfontfamily\extrabold{TitilliumWeb-Bold.ttf}[
   Path=../../data_backend/TeX/texmf-dist/fonts/truetype/,
-	FakeStretch=0.99,
+  FakeStretch=0.99,
   Scale=1.0,
   LetterSpace=0.067,
   FakeBold=0
@@ -85,8 +85,8 @@
 % Header: Layout der Jahreszahl
 \makeatletter
 \def\Year#1{%
-	\def\yy@##1##2##3##4;{##3##4}%
-	\expandafter\yy@#1;%
+  \def\yy@##1##2##3##4;{##3##4}%
+  \expandafter\yy@#1;%
 }
 \makeatother
 
@@ -99,13 +99,13 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \newcommand{\certHeaderLogo}{%
-	\begin{wrapfigure}{R}{\textwidth}
-		\vspace{-7\baselineskip}
-		\hspace{-30mm} \includegraphics[width=40mm]{../../data_backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
+  \begin{wrapfigure}{R}{\textwidth}
+    \vspace{-7\baselineskip}
+    \hspace{-30mm} \includegraphics[width=40mm]{../../data_backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
     \vspace{-5.325mm} %\vspace{-5.2mm}
 
     \hspace{-16.85mm} \fontsize{9.85}{12}\selectfont\extrabold\textbf{PLACE-LOGO} %\hspace{-16.85mm}
-	\end{wrapfigure}
+  \end{wrapfigure}
 }
 
 % Header setzen
@@ -124,217 +124,217 @@
 
 % Format für Zeugnistexte
 \newcommand{\certText}[4]{%
-	\begin{minipage}[t]{\textwidth}
-		\ifthenelse{%
-			\equal{#1}{}%
-		}%
-		{}%
-		{%
-			{\large{\textbf{#1}}}%
-			%
-			\vspace{0.5\baselineskip}
-			%
-		}
-	
-		\ifthenelse{%
-			\equal{#2}{}%
-		}%
-		{}%
-		{%
-			#2%
-			%
-			\vspace{0.5\baselineskip}
-			%
-		}
+  \begin{minipage}[t]{\textwidth}
+    \ifthenelse{%
+      \equal{#1}{}%
+    }%
+    {}%
+    {%
+      {\large{\textbf{#1}}}%
+      %
+      \vspace{0.5\baselineskip}
+      %
+    }
+  
+    \ifthenelse{%
+      \equal{#2}{}%
+    }%
+    {}%
+    {%
+      #2%
+      %
+      \vspace{0.5\baselineskip}
+      %
+    }
 
-		\ifthenelse{\equal{#3}{}}{}{\emph{#3}%
-			%
-			\vspace{0.5\baselineskip}
-			%
-		}
-		
-		\ifthenelse{\equal{#4}{}}{}{\hspace{\fill}\emph{#4}}
-	
-		\hfil\rule{\textwidth}{0.4pt}\hfil%
-	\end{minipage}
+    \ifthenelse{\equal{#3}{}}{}{\emph{#3}%
+      %
+      \vspace{0.5\baselineskip}
+      %
+    }
+    
+    \ifthenelse{\equal{#4}{}}{}{\hspace{\fill}\emph{#4}}
+  
+    \hfil\rule{\textwidth}{0.4pt}\hfil%
+  \end{minipage}
 
-	\renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\headrulewidth}{0.4pt}
 }
 
 
 % Klassenspielseite
 \newcommand{\finalPupilsPlay}[2]{%
-	\newpage
-	%
-	{\Huge{Abschluss im Fach Klassenspiel}}
+  \newpage
+  %
+  {\Huge{Abschluss im Fach Klassenspiel}}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	\emph{#1}
+  \emph{#1}
 
-	\par
+  \par
 
-	\emph{#2}
+  \emph{#2}
 
-	\vspace{5\baselineskip}
+  \vspace{5\baselineskip}
 
-	\setlength{\tabcolsep}{0pt}
+  \setlength{\tabcolsep}{0pt}
 
-	\begin{tabular}{@{}p{75mm}c}
-    & \rule{\linewidth-75mm}{0.4pt}\\
-    & Unterschrift der Klassenspielleitung
-	\end{tabular}
+  \begin{tabular}{@{}p{75mm}c}
+    PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
+                                                     & Unterschrift der Klassenspielleitung
+  \end{tabular}
 
-	\renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\headrulewidth}{0pt}
 }
 
 
 % Eurythmieabschluss
 \newcommand{\finalEurythmy}[2]{%
-	\newpage
-	%
-	{\Huge{Abschluss im Fach Eurythmie}}
+  \newpage
+  %
+  {\Huge{Abschluss im Fach Eurythmie}}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	\textbf{Erarbeitete Werke:}
+  \textbf{Erarbeitete Werke:}
 
-	\setlength{\tabcolsep}{2em}
-	% following line is a marker; DO NOT DELETE!
-	% Eurythmiewerke
-	\begin{tabular}{@{}ll}
-		#1
-	\end{tabular}
+  \setlength{\tabcolsep}{2em}
+  % following line is a marker; DO NOT DELETE!
+  % Eurythmiewerke
+  \begin{tabular}{@{}ll}
+    #1
+  \end{tabular}
 
-	\par
+  \par
 
-	\emph{#2}
+  \emph{#2}
 
-	\vspace{5\baselineskip}
+  \vspace{5\baselineskip}
 
-	\setlength{\tabcolsep}{0pt}
+  \setlength{\tabcolsep}{0pt}
 
-	\begin{tabular}{@{}p{75mm}c}
-    & \rule{\linewidth-75mm}{0.4pt}\\
-    & Unterschrift der Eurythmieleitung
-	\end{tabular}
+  \begin{tabular}{@{}p{75mm}c}
+    PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
+                                                     & Unterschrift der Eurythmieleitung
+  \end{tabular}
 
-	\renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\headrulewidth}{0pt}
 }
 
 
 % Jahresarbeit
 \newcommand{\finalThesis}[4]{%
-	\newpage
-	%
-	{\Huge{Gutachten zur Jahresarbeit}}
+  \newpage
+  %
+  {\Huge{Gutachten zur Jahresarbeit}}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	{\large\textbf{Thema:} #1}
+  {\large\textbf{Thema:} #1}
 
-	\par
+  \par
 
-	\textbf{Erstgutachter:} #2 \hspace{5em} \textbf{Zweitgutachter:} #3
+  \textbf{Erstgutachter:} #2 \hspace{5em} \textbf{Zweitgutachter:} #3
 
-	\par
+  \par
 
-	\emph{#4}
+  \emph{#4}
 
-	\vspace*{5\baselineskip}
+  \vspace*{5\baselineskip}
 
-	\setlength{\tabcolsep}{10mm}
+  \setlength{\tabcolsep}{10mm}
 
-	\begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
-		\rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
-		Erstgutachter & Zweitgutachter
-	\end{tabular}
+  \begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
+    \rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
+    Erstgutachter & Zweitgutachter
+  \end{tabular}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	PLACE, den \certDateFormat\displaydate{certDate}
+  PLACE, den \certDateFormat\displaydate{certDate}
 
-	\renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\headrulewidth}{0pt}
 }
 
 
 % Abschlussnoten
 \newcommand{\finalMarks}[1]{%
-	\newpage
-	%
-	{\Huge{Notenzeugnis}}
+  \newpage
+  %
+  {\Huge{Notenzeugnis}}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	\setlength{\tabcolsep}{0pt}
+  \setlength{\tabcolsep}{0pt}
 
-	\begin{tabular}{@{}p{75mm}r}
-		#1 
-	\end{tabular}
+  \begin{tabular}{@{}p{75mm}r}
+    #1 
+  \end{tabular}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	\begin{tabular}{@{}p{75mm}c}
-		PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
-												& Unterschrift des Tutors
-	\end{tabular}
+  \begin{tabular}{@{}p{75mm}c}
+    PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
+                                                     & Unterschrift des Tutors
+  \end{tabular}
 
-	\vspace{\fill}
+  \vspace{\fill}
 
-	\setlength\extrarowheight{5pt}
-	{\scriptsize
-	\begin{tabular}{@{}L{\linewidth/7}*{6}{|C{\linewidth/7}}}
-		\textbf{Notenstufe} & sehr gut & gut & befriedigend & ausreichend & mangelhaft & ungen\"ugend \\
-		\hline
+  \setlength\extrarowheight{5pt}
+  {\scriptsize
+  \begin{tabular}{@{}L{\linewidth/7}*{6}{|C{\linewidth/7}}}
+    \textbf{Notenstufe} & sehr gut & gut & befriedigend & ausreichend & mangelhaft & ungen\"ugend \\
+    \hline
     % following line is a marker; DO NOT DELETE!
-    % Notenpunkte	
-		MARKS-FORMAT%\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0
-	\end{tabular}
-	}
-	
-	\renewcommand{\headrulewidth}{0.0pt}
+    % Notenpunkte  
+    MARKS-FORMAT%\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0
+  \end{tabular}
+  }
+  
+  \renewcommand{\headrulewidth}{0.0pt}
 }
 
 
 % letzte Seite
 \newcommand{\finalPage}[3]{%
-	\newpage
-	%
-	\certText{Bemerkungen:}{#1}{}{}
+  \newpage
+  %
+  \certText{Bemerkungen:}{#1}{}{}
 
-	\textbf{Fehltage:} #2 \hspace{7\baselineskip} \textbf{davon unentschuldigt:} #3
-	\par
-	Die in diesem Zeugnis verwendeten Formulierungen sind ihrem eigentlichen sprachlichen Inhalt nach zu verstehen. Arbeitszeugnissen zugrundeliegende Wordcodes fanden hier keine Anwendung.
+  \textbf{Fehltage:} #2 \hspace{7\baselineskip} \textbf{davon unentschuldigt:} #3
+  \par
+  Die in diesem Zeugnis verwendeten Formulierungen sind ihrem eigentlichen sprachlichen Inhalt nach zu verstehen. Arbeitszeugnissen zugrundeliegende Wordcodes fanden hier keine Anwendung.
 
-	\vspace{5\baselineskip}
+  \vspace{5\baselineskip}
 
-	\setlength{\tabcolsep}{10mm}
+  \setlength{\tabcolsep}{10mm}
 
-	\begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
-		\rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
-		Unterschrift der Schulleitung & Unterschrift der/des Erziehungsberechtigten
-	\end{tabular}
+  \begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
+    \rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
+    Unterschrift der Schulleitung & Unterschrift der/des Erziehungsberechtigten
+  \end{tabular}
 
-	\vspace{3\baselineskip}
+  \vspace{3\baselineskip}
 
-	\centerline{\textcolor[rgb]{0.75,0.75,0.75}{Schulstempel}}
+  \centerline{\textcolor[rgb]{0.75,0.75,0.75}{Schulstempel}}
 
-	\vspace{2\baselineskip}
+  \vspace{2\baselineskip}
 
-	PLACE, den \certDateFormat\displaydate{certDate}
+  PLACE, den \certDateFormat\displaydate{certDate}
 
-	\renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\headrulewidth}{0.4pt}
 }
 
 
 \pagestyle{fancy}
 
 \begin{document}
-	%\finalPupilsPlay{}{}
-	%\finalEurythmy{}{}
-	%\finalThesis{}{}{}{}
-	%\newpage	
-	%\certText{}{}{}{}
-	%\finalMarks{}
-	%\finalPage{}{}{}
+  %\finalPupilsPlay{}{}
+  %\finalEurythmy{}{}
+  %\finalThesis{}{}{}{}
+  %\newpage  
+  %\certText{}{}{}{}
+  %\finalMarks{}
+  %\finalPage{}{}{}
 \end{document}
