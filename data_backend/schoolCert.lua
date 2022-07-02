@@ -139,13 +139,16 @@ for i = 0, #SESSION do
             end
           end  
           if string_works ~= "" and s.evaluation then
-            code_TeX = code_TeX.."\n  \\finalEurythmy{"..string_works.."}{"..s.evaluation:gsub("\n\n\n*", "\\newline\\newline ").."}"
+            string_works = string_works:gsub("%%", "\\%%")
+            s.evaluation = s.evaluation:gsub("%%", "\\%%"):gsub("\n\n\n*", "\\newline\\newline ")
+            code_TeX = code_TeX.."\n  \\finalEurythmy{"..string_works.."}{"..s.evaluation.."}"
           end
         end
         if s.name:match("Jahresarbeit") then
           if s.topic and s.firstReader and s.secondReader and s.evaluation then
             -- Delete trailing newlines, reduce more than one blankline to one, and finally turn single linebreaks (\n) into paragraph limits.
-            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n *\n *\n*", "\\newline\\newline "):gsub("([^\n]) *\n *([^\n])", "%1\\newline\\newline %2")
+            s.topic = s.topic:gsub("%%", "\\%%")
+            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n *\n *\n*", "\\newline\\newline "):gsub("([^\n]) *\n *([^\n])", "%1\\newline\\newline %2"):gsub("%%", "\\%%")
             code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation.."}"
           end
         end
@@ -156,9 +159,8 @@ for i = 0, #SESSION do
         end
       else
         if s.name and (s.evaluation or s.contents) then
-          s.evaluation = s.evaluation or ""
-          s.contents = s.contents and s.contents:gsub("\n\n*", " ") or ""
-          s.evaluation = s.evaluation:gsub("\n\n*", " ")
+          s.evaluation = (s.evaluation and s.evaluation:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
+          s.contents = (s.contents and s.contents:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
           if j > 0 and SESSION[i].subjects[j-1].name == s.name then
             code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
           else
@@ -177,7 +179,6 @@ for i = 0, #SESSION do
     end
 
     code_TeX = code_TeX.."\n  \\finalPage{"..(p.finalRemarks or "\\textit{keine}").."}{"..(p.daysAbsent or "–").."}{"..(p.daysAbsent_unexplained or "–").."}\n\\end{document}"
-
 
     local file_output = ""
     if OS == "Linux" or OS == "Darwin" then

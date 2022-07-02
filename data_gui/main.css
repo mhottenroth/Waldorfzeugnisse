@@ -1,3 +1,13 @@
+:root{
+  --fg-normal: rgba(40,10,10,1);
+  --fg-dimmed: rgba(40,10,10,0.25);
+  --bg-button: rgba(232,153,102,1);
+  --bg-input: rgba(255,255,255,1);
+  --border-normal: rgba(0,0,0,1);
+  --border-active: rgba(252,195,77,1);
+}
+
+
 @font-face {
   font-family: Titillium;
   src: url("./fonts/TitilliumWeb-Regular.ttf") format("truetype");
@@ -14,7 +24,23 @@ body{
 }
 
 *{
-  color: #280A0A;
+  color: var(--fg-normal);
+}
+
+input,
+select,
+textarea{
+  color: var(--fg-normal) !important;
+  background-color: var(--bg-input) !important;
+  border: 1px solid var(--border-normal) !important;
+  border-radius: 3px !important;
+}
+
+input:focus,
+input:active,
+textarea:focus{
+  border: 1px solid var(--border-active) !important;
+  outline: 1px solid var(--border-active)
 }
 
 *, th{
@@ -24,14 +50,13 @@ body{
 
 table, td, tr, th{
   padding: 0px;
-  margin: 0px;
 }
 
 #place{
-  font-size: 22;
-  left: 115;
+  font-size: 22.5px;
+  margin-left: 104px;
   letter-spacing: 0.4px;
-  top: 69.8
+  top: 73px;
 }
 
 .subjectInfoPage{
@@ -190,10 +215,6 @@ button:disabled{
   width: 15ch;
 }
 
-#class_date_container button{
-  width: 24px
-}
-
 #list_subjects,
 .input_eurythmieRow{
   width: 100%
@@ -276,18 +297,6 @@ input:disabled{
   padding-left: 10px;
 }
 
-#logoAndCredits,
-#class_date_container{
-  min-height: 95px
-}
-
-#class_date_container{
-  padding-top: 9px;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-bottom: 19px;
-}
-
 
 #mainControls{
   border: 1px solid black;
@@ -297,6 +306,7 @@ input:disabled{
 #tableHeader{
   border: 1px solid black;
   border-radius: 10px;
+  border-spacing: 5px;
 }
 
 hr{
@@ -314,17 +324,18 @@ hr{
 
 #logoAndCredits{
   display: flex;
-  border-radius: 10px;
-  background: rgb(237,123,130);
-  background: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%); 
   color: #fff;
-  margin-left: 5px;
 }
 
 #nameAndCredits{
   vertical-align:top; 
   padding-top: 4px;
   padding-right: 10px;
+}
+
+#programInfo{
+  background: linear-gradient(45deg, rgb(237, 123, 130) 0%, rgb(232, 153, 102) 35%, rgb(252, 195, 77) 100%);
+  border-radius: 10px;
 }
 
 #programName,
@@ -365,8 +376,6 @@ caption{
 }
 
 #class_date_container{
-  display: flex;
-  padding: 6px;
   padding-left: 20px;
 }
 
@@ -412,3 +421,108 @@ button.calendar_dateButton:hover{
   background-color: #FFC88C;
 }
 
+
+.checkboxCell input[type="checkbox"]{
+  opacity: 0;
+  position: absolute;
+}
+
+.radioCell input[type="radio"]{
+  opacity: 0;
+  position: absolute;
+}
+
+.afterCheckboxLabel:after{
+  content: "";
+  border: 1px solid black;
+  width: 12px;
+  vertical-align: bottom;
+  display: inline-block;
+  border-radius: 3px;
+  background-color: white;
+  color: white;
+  margin-left: 3.9px;
+  margin-bottom: 1.5px;
+  height: 12.4px
+}
+
+.afterRadioLabel:after{
+  content: "";
+  border: 1px solid black;
+  width: 12.6px;
+  vertical-align: bottom;
+  display: inline-block;
+  border-radius: 15.2px;
+  background-color: white;
+  color: white;
+  margin-left: 4.7px;
+  margin-bottom: 1px;
+  height: 12.6px
+}
+
+.checkboxCell input[type="checkbox"]:checked + .afterCheckboxLabel:after{
+  content: "\2714";
+  line-height: 12px;
+  color: var(--fg-normal);
+}
+
+.radioCell input[type="radio"]:checked + .afterRadioLabel:after{
+  content: "\23FA";
+  line-height: 10.8px;
+  color: var(--fg-normal);
+}
+
+.checkboxCell input[type="checkbox"]:not(:checked):hover + .afterCheckboxLabel:after{
+  content: "\2714";
+  line-height: 12px;
+  color: var(--fg-dimmed);
+}
+
+.radioCell input[type="radio"]:not(:checked):hover + .afterRadioLabel:after{
+  content: "\23FA";
+  line-height: 11px;
+  color: var(--fg-dimmed);
+}
+
+textarea{
+  width: 100%;
+  -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+  -moz-box-sizing: border-box; /* FF1+ */
+  box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+#pupilsEditCell{
+  width: 90ch;
+}
+
+#subjectsEditCell{
+  width: 60ch;
+}
+
+#evaluationWidget{
+  width: 60ch
+}
+
+#finalRemarks{
+  width: 60ch
+}
+
+#header{
+  width: 100%
+}
+
+.input_name,
+#input_path_sessionFile{
+  width: 100%;
+  -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+  -moz-box-sizing: border-box; /* FF1+ */
+  box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+#overlay_calendar{
+  z-index: 999999;
+  padding: 10px;
+  opacity: 1;
+  visibility: visible;
+  width: 240px
+}
