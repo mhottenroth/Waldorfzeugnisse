@@ -180,7 +180,7 @@
               </tr>
               <tr class="optionRow">
                 <td><span>alle an-/abwählen:</span></td>
-                <td align=center class="checkboxCell"><input type="checkbox" id="togglePrintAll" checked onclick="checkbox_togglePrintAll(this); updateSession_togglePrintAll(this)"><label class="afterCheckboxLabel"></label></td>
+                <td align=center class="checkboxCell"><input type="checkbox" id="togglePrintAll" checked onclick="checkbox_togglePrintAll(this); updateSession_togglePrintAll(this)"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -485,8 +485,15 @@
       // So = 0, Mo = 1 etc. → So = 6; Mo = 0 etc.
       var firstOfYear_weekday = (firstOfYear.getDay() + 6) % 7
 
-      // Add half a day to compensate summer time.
+      // Add half a day (0.5 * 1000 * 3600 * 24) to compensate summer time.
       var week = Math.ceil(( d.valueOf() + 0.5 * 1000 * 3600 * 24 - firstOfYear.valueOf() + firstOfYear_weekday * 1000 * 3600 * 24 ) / 1000 / 3600 / 24 / 7)
+
+      if (firstOfYear_weekday > 3){
+        week -= 1
+        if (week == 0){
+          week = getWeekNumber((year-1).toString()-1 + '1231')
+        }
+      }
       
       return week
     }
@@ -511,7 +518,7 @@
       var subjects = document.getElementById("list_subjects").options
       for (var s = 0; s < subjects.length; s++){
         dataset.subjects[subjects[s].value] = { 
-            "name": subjects[s].innerText
+          "name": subjects[s].innerText
         }
       }
       return dataset
@@ -521,7 +528,6 @@
     function addSubjectToAllPupils(name){
       for (var p = 0; p < SESSION.length; p++){
         var i = document.getElementById("list_subjects").options.length - 1
-        console.log("Number of subjects: " + i)
         SESSION[p].subjects[i] = {
           "name": name
         }
@@ -529,17 +535,16 @@
     }
 
 
-    function getSelectedPupil(index){
+    function getSelectedPupil(){
       var radio_pupils = document.getElementsByName("radio_pupil")
-      if (!index){
-        var index = -1
-        for (i in radio_pupils){
-          if (radio_pupils[i].checked){
-            index = i
-            break
-          }
+      var index
+      for (i in radio_pupils){
+        if (radio_pupils[i].checked){
+          index = i
+          break
         }
       }
+      
       var pupils = document.getElementsByClassName("pupilRow")
       var fn = pupils[index].cells[3].children[0].value
       var ln = pupils[index].cells[4].children[0].value
@@ -552,11 +557,11 @@
       var index = document.getElementById("list_subjects").selectedIndex
       if (index > -1){
         var name = document.getElementById("list_subjects").options[document.getElementById("list_subjects").selectedIndex].innerText
-        return {"name": name, "index": index.toString()}
+        return {"name": name, "index": index}
       }
     }
 
-
+    /********************************************************************/
 
     /**********************************
     * Header information (meta data). *
@@ -962,11 +967,11 @@
       var newRow = document.createElement('TR');
       newRow.classList.add("pupilRow");
       newRow.innerHTML = '<td align=right><button type="button" title="Schüler aus der Liste löschen" onclick="deletePupil(this); updateFinalRemarksPanel()">Löschen</td>\
-        <td align=center class="checkboxCell"><input type="checkbox" name="printPupilCheckbox" checked onclick="updateSession_togglePrint(this)"><label class="afterCheckboxLabel"></td>\
+        <td align=center class="checkboxCell"><input type="checkbox" name="printPupilCheckbox" checked onclick="updateSession_togglePrint(this)"></td>\
         <td align=right><span>' + (lastListIndex + 1) + '</span></td>\
         <td><input type="text" class="input_name" onchange="deleteExcessSpaces(this)" value="' + fn + '" oninput="updateSession_firstName(this); updateFinalRemarksPanel(); updateSubjectPanel()" onchange="deleteExcessSpaces(this)"></td>\
         <td><input type="text" class="input_name" onchange="deleteExcessSpaces(this)" value="' + ln + '" oninput="updateSession_lastName(this)" onchange="deleteExcessSpaces(this)"></td>\
-        <td align=center class="radioCell"><input type="radio" onclick="updateSubjectPanel(); updateFinalRemarksPanel()" name="radio_pupil"><label class="afterRadioLabel"></label></td>'
+        <td align=center class="radioCell"><input type="radio" onclick="updateSubjectPanel(); updateFinalRemarksPanel()" name="radio_pupil"></td>'
       document.getElementById('t01').getElementsByTagName('tbody')[0].appendChild(newRow);
 
       console.log(document.getElementById('t01').offsetHeight)
