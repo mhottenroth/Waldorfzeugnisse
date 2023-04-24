@@ -1,12 +1,50 @@
 :root{
-  --fg-normal: rgba(40,10,10,1);
-  --fg-dimmed: rgba(40,10,10,0.25);
+  --fg-normal: rgba(90,20,20,1);
+  --fg-dimmed: rgba(90,20,20,0.25);
+  --fg-prelight: #370000;
+  --fg-button: #fff;
+  --fg-checkbox: #930;
+  --fg-radio: #930;
+  --bg-main: #FFF5F0;
   --bg-button: rgba(232,153,102,1);
+  --bg-button-prelight: #F7AC7C;
+  --bg-button-active:  rgba(220,150,110,1);
   --bg-input: rgba(255,255,255,1);
+  --bg-overlay: #fff5f0;
   --bg-prelight: rgba(255,210,160,1);
   --bg-prelight-dimmed: rgba(255,210,160,0.5);
   --border-normal: rgba(0,0,0,1);
   --border-active: rgba(252,195,77,1);
+  --border-overlay: #930;
+  --gradient: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%);
+  --panels: #FAF5F5;
+  --session-buttons-filter: invert(15%) sepia(42%) saturate(5570%) hue-rotate(38deg) brightness(95%) contrast(106%);
+  --shadow: var(--fg-prelight);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --fg-normal: #ddf;
+    --fg-dimmed: rgba(240,245,255,0.25);
+    --fg-prelight: #fff;
+    --fg-button: #fff;
+    --fg-checkbox: #eef;
+    --fg-radio: #ccf;
+    --bg-main: #191E3C;
+    --bg-button: #3C466E;
+    --bg-button-prelight: #558;
+    --bg-input: #191E3C;
+    --bg-overlay: #1A1A2F;
+    --bg-prelight: #6677AA;
+    --bg-prelight-dimmed: rgba(255,210,160,0.5);
+    --border-normal: #46466E;
+    --border-active: #8ca0dc;
+    --border-overlay: var(--bg-prelight);
+    --gradient: linear-gradient(45deg, rgba(0,18,54,1) 0%, rgba(40,40,60,1) 35%, rgba(132,125,180,1) 100%);
+    --panels: #2A3354;
+    --session-buttons-filter: invert(84%) sepia(26%) saturate(797%) hue-rotate(193deg) brightness(102%) contrast(108%);
+    --shadow: black;
+  }  
 }
 
 
@@ -22,27 +60,32 @@
 }
 
 body{
-  background-color: #FFF5F0
+  background-color: var(--bg-main)
 }
 
 *{
   color: var(--fg-normal);
 }
 
-input,
+input[type="text"],
 select,
 textarea{
-  color: var(--fg-normal) !important;
-  background-color: var(--bg-input) !important;
-  border: 1px solid var(--border-normal) !important;
-  border-radius: 3px !important;
+  color: var(--fg-normal);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-normal);
+  border-radius: 3px;
 }
 
-input:focus,
-input:active,
+input[type="text"]:focus,
+input[type="text"]:active,
 textarea:focus{
-  border: 1px solid var(--border-active) !important;
+  border: 1px solid var(--border-active);
   outline: 1px solid var(--border-active)
+}
+
+input[type="text"]{
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 *, th{
@@ -77,12 +120,7 @@ table, td, tr, th{
 }
 
 
-#overlay_calendar{
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px #280A0A;
-  background-color: #FAF5F5;
-}
+
 
 .button_calendar_day{
   background-color: transparent;
@@ -96,9 +134,10 @@ table, td, tr, th{
 #button_calendar_year_more,
 #button_calendar_month_more{
   background-color: transparent;
-  color: #A37A7A;
+  color: var(--fg-dimmed);
   font-weight: normal;
-  border: none
+  border: none;
+  transition: 0ms color ease-in-out;
 }
 
 #button_calendar_year_less:hover,
@@ -106,53 +145,55 @@ table, td, tr, th{
 #button_calendar_year_more:hover,
 #button_calendar_month_more:hover{
   color: #280A0A;
+  transition: 300ms color ease-in-out;
 }
 
 #tableHeader,
-#pupilsEditCell,
-#subjectsEditCell,
-#evaluationWidget,
-#finalRemarks{
-  background-color: #FAF5F5
+#panel_pupils,
+#panel_subjects,
+#panel_evaluation,
+#panel_finalRemarks{
+  background-color: var(--panels);
 }
 
 .button_session{
   border: none;
   background-color: transparent;
-  color: #B88;
+  color: var(--fg-normal);
   font-size: 12px;
   font-weight: normal;
   line-height: 16px;
-  transition: filter 0.5s
+  transition: opacity 0.5s;
+  opacity: 0.5
 }
 
 .button_session:hover{
   background-color: transparent;
-  filter: brightness(20%);
+  opacity: 1;
 }
 
 
 
-#pupilsEditCell{
+#panel_pupils{
   width: 80ch;
   min-width: 80ch
 }
 
-#subjectsEditCell{
+#panel_subjects{
   width: 60ch;
   min-width: 60ch;
 }
 
-#buttonsTable_subjects{
+#panel_subjects_header{
   width: 100%
 }
 
-#evaluationWidget{
+#panel_evaluation{
   width: 60ch;
   min-width: 60ch;
 }
 
-#finalRemarks{
+#panel_finalRemarks{
   width: 60ch;
   min-width: 60ch
 }
@@ -208,7 +249,7 @@ button:disabled{
   opacity: 0.5
 }
 
-#eurythmieTable tr:nth-of-type(2) > td{
+#eurythmieTable tr:first-of-type > td{
   padding-top: 2px;
 }
 
@@ -226,53 +267,32 @@ button:disabled{
   transition: display 3s;
 }
 
-#eurythmieabschluss_lastLine > td{
-  padding-bottom: 5.45em
-}
-
-input[type=text],
-button{
-  padding: 0px 5px;
-  min-height: 1.75m;
-  height: 1.75em;
-  -webkit-appearance: none;
-}
 
 button{
-  background-color: rgba(232,153,102,1);
-  color: #fff;
+  background-color: var(--bg-button);
+  color: var(--fg-button);
   font-weight: bold;
 }
 
 button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):not(:disabled):hover{
-  background-color: #F7AC7C;
+  background-color: var(--bg-button-prelight);
 }
 
 button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):hover:active{
-  background-color: rgba(220,150,110,1);
+  background-color: var(--bg-button-active);
 }
 
 
 
 #button_applyTeacherToAll{
-  width: 203px
+  width: 100%
 }
-
-input,
-input:disabled{
-  border: 1px solid black;
-  border-radius: 3px;
-  background-color: #fff;
-  color: #000;
-}
-
-
 
 
 #t01,
 #eurythmieTable{
-  border: 1px solid #930;
-  background-color: #fff5f0;
+  border: 1px solid var(--border-overlay);
+  background-color: var(--bg-overlay);
   border-spacing: 0px;
   border-radius: 5px;
   width: 100%;
@@ -312,7 +332,7 @@ input:disabled{
 }
 
 hr{
-  background: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%);
+  background: var(--gradient);
   height: 1px;
   border: none
 }
@@ -336,7 +356,7 @@ hr{
 }
 
 #programInfo{
-  background: linear-gradient(45deg, rgb(237, 123, 130) 0%, rgb(232, 153, 102) 35%, rgb(252, 195, 77) 100%);
+  background: var(--gradient);
   border-radius: 10px;
 }
 
@@ -355,95 +375,71 @@ hr{
   border: 1px solid black;
 }
 
-tr:nth-child(odd){
-  /*background: #eee;*/
-}
-
-tr:nth-child(even){
-  background: unset;
-}
-
 th{
   border-bottom: 1px solid black;
   font-weight: normal;
   font-size: small;
 }
 
-caption{
-  font-weight: bold;
-}
-
-#header{
-  background-color: transparent;
-}
 
 #class_date_container{
   padding-left: 20px;
 }
 
-#saveRow_pupils > td{
-  padding-top: 3.75em;
-}
-
-#saveRow_subjects > td{
-  padding-top: 1em;
-}
 
 #overlay_calendar table{
   border-collapse: collapse
 }
 
 
+.calendar_weeknumber,
+.calendar_weekday{
+  width: 3ch;
+  height: 1.25em;
+  background-color: var(--bg-prelight);
+  text-align: center;
+}
+
 .calendar_dateButton{
   font-weight: normal;
   width: 4ch;
-  height: 1.5em;
+  height: 2em;
   text-align: center;
   background-color: transparent;
-  color: #280A0A;
-  border: none
+  color: var(--fg-normal);
+  border: none;
+  transition: 0ms background-color ease-in-out;
 }
 
 
 button.calendar_dateButton:hover{
-  background-color: #FFC88C;  
-}
-
-
-.calendar_weeknumber{
-  width: 4ch;
-  background-color: #FFC88C;
-  text-align: center;
-}
-
-
-.calendar_weekday{
-  height: 2em;
-  text-align: center;
-  background-color: #FFC88C;
+  background-color: var(--bg-prelight);
+  transition: 200ms background-color ease-in-out;
 }
 
 
 textarea{
   width: 100%;
+  resize: none;
+  overflow-y: scroll;
   -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
   -moz-box-sizing: border-box; /* FF1+ */
   box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
 }
 
-#pupilsEditCell{
+#panel_pupils{
   width: 90ch;
 }
 
-#subjectsEditCell{
+#panel_subjects{
   width: 60ch;
 }
 
-#evaluationWidget{
+#panel_evaluation{
   width: 60ch
 }
 
-#finalRemarks{
+#panel_finalRemarks{
   width: 60ch
 }
 
@@ -460,17 +456,21 @@ textarea{
 }
 
 #overlay_calendar{
-  z-index: 999999;
+  background-color: var(--bg-overlay);
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px var(--shadow);
   padding: 10px;
   opacity: 1;
   visibility: visible;
-  width: 240px
+  width: 240px;
+  z-index: 999999;
 }
 
 
 option:checked{
   box-shadow: 0 0 0 12px var(--bg-prelight) inset;
-  color: var(--fg-normal) !important;
+  color: var(--fg-normal);
 }
 
 
@@ -478,4 +478,158 @@ option:checked{
 ::-moz-selection,
 ::-webkit-selection{
   background-color: var(--bg-prelight);
+}
+
+.panelHeader{
+  height: 95px;
+}
+
+.panelBody_top{
+  height: 70px;
+  width: 100%;
+}
+
+#panel_pupils .panelHeader tr,
+#panel_subjects .panelHeader tr,
+#panel_evaluation .panelHeader tr,
+#panel_evaluation .panelHeader tr,
+#panel_finalRemarks .panelHeader tr,
+#panel_finalRemarks .panelHeader tr{
+  vertical-align: top;
+}
+
+#panel_pupils,
+#panel_subjects,
+#panel_evaluation,
+#panel_finalRemarks{
+  transition: height 300ms ease-in-out;
+  padding: 5px !important;
+}
+
+#panel_pupils .panelHeader tr:last-of-type:not(:first-of-type),
+#panel_subjects .panelHeader tr:last-of-type:not(:first-of-type){
+  vertical-align: bottom;
+}
+
+
+input[type="checkbox"]{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  place-content: center;
+  margin: 0;
+  border: 1px solid var(--border-normal);
+}
+
+input[type="checkbox"]:checked:after{
+  background-color: var(--fg-checkbox);
+  clip-path: polygon(15% 50%, 5% 65%, 50% 100%, 90% 15%, 90% 0%, 40% 70%);
+  transform: scale(1);
+  transform-origin: bottom left;
+  transition: 200ms transform ease-in-out, 200ms background-color linear;
+}
+
+input[type="checkbox"]:after{
+  content: "";
+  clip-path: polygon(15% 50%, 5% 65%, 50% 100%, 90% 15%, 90% 0%, 40% 70%);
+  height: 14px;
+  width: 14px;
+  transform: scale(0);
+  transition: 450ms transform ease-in-out, 150ms background-color linear;
+  transform-origin: bottom left;
+  background-color: var(--bg-entry);
+}
+
+input[type="radio"]{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  place-content: center;
+  border-radius: 50px;
+  margin: 0;
+  border: 1px solid var(--border-normal);
+}
+
+input[type="radio"]:checked:after{
+  background-color: var(--fg-radio);
+  clip-path: circle(50%);
+  transform: scale(0.6);
+  transform-origin: center;
+  transition: 300ms transform ease-in-out, 300ms background-color linear;
+}
+
+input[type="radio"]:after{
+  content: "";
+  height: 14px;
+  width: 14px;
+  transform: scale(0);
+  clip-path: circle(50%);
+  transform-origin: center;
+  transition: 150ms transform ease-in-out, 150ms background-color linear;
+}
+
+#list_subjects option{
+  color: var(--fg-normal);
+  background-color: transparent;
+  box-shadow: 0px 0px black;
+  appearance: none;
+  -moz-appearance: none;
+}
+
+#list_subjects option:checked{
+  background-color: var(--bg-prelight);
+  color: var(--fg-prelight);
+  box-shadow: 0px 0px black;
+  appearance: none;
+  -moz-appearance: none;
+}
+
+
+textarea{
+  transition: 300ms;
+}
+
+.button_session img{
+  filter: var(--session-buttons-filter);
+  color: var(--fg-normal);
+}
+
+button > img{
+  vertical-align: text-bottom
+}
+
+#eurythmieTable{
+  margin-bottom: 2em;
+}
+
+input[class="input_eurythmieRow"]{
+  width: calc(100% - 10px); /* 100 % – padding-left – padding-right */
+}
+
+#jahresarbeitPage .panelHeader{
+  width: 100%
+}
+
+input[class="input_jahresarbeit_topic"]{
+  width: 100%;
+}
+
+#jahresarbeitPage tr:nth-of-type(3) td:nth-of-type(2){
+  width: 100%;
+}
+
+#jahresarbeitPage tr:nth-of-type(3) td:nth-of-type(2) input{
+  width: calc(100% - 10px); /* 100 % – padding-left – padding-right */
+}
+
+#input_subjectName{
+  width: calc(100% - 10px - 5px) /* 100 % – padding-left – padding-right – separator */
 }

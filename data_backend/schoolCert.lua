@@ -140,7 +140,7 @@ for i = 0, #SESSION do
           end  
           if string_works ~= "" and s.evaluation then
             string_works = string_works:gsub("%%", "\\%%")
-            s.evaluation = s.evaluation:gsub("%%", "\\%%"):gsub("\n\n\n*", "\\newline\\newline ")
+            s.evaluation = s.evaluation:gsub("%%", "\\%%"):gsub("\n\n+", "\\par ")
             code_TeX = code_TeX.."\n  \\finalEurythmy{"..string_works.."}{"..s.evaluation.."}"
           end
         end
@@ -148,7 +148,7 @@ for i = 0, #SESSION do
           if s.topic and s.firstReader and s.secondReader and s.evaluation then
             -- Delete trailing newlines, reduce more than one blankline to one, and finally turn single linebreaks (\n) into paragraph limits.
             s.topic = s.topic:gsub("%%", "\\%%")
-            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n *\n *\n*", "\\newline\\newline "):gsub("([^\n]) *\n *([^\n])", "%1\\newline\\newline %2"):gsub("%%", "\\%%")
+            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n\n+", "\\par "):gsub("([^\n]) *\n *([^\n])", "%1\\par %2"):gsub("%%", "\\%%")
             code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation.."}"
           end
         end

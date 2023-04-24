@@ -119,18 +119,18 @@
     <g
        id="g927"
        transform="matrix(1.1071428,0,0,1.1071428,339.71429,482.50504)"
-       style="fill:#dcc8c8;fill-opacity:1;stroke:none">
+       style="fill:#000000;fill-opacity:1;stroke:none">
       <g
          inkscape:label="Layer 1"
          id="layer1-6"
          transform="translate(0,-1036.3622)"
-         style="fill:#dcc8c8;fill-opacity:1;stroke:none" />
+         style="fill:#000000;fill-opacity:1;stroke:none" />
       <g
          id="layer2"
          inkscape:label="Layer"
-         style="fill:#dcc8c8;fill-opacity:1;stroke:none">
+         style="fill:#000000;fill-opacity:1;stroke:none">
         <path
-           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#dcc8c8;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;paint-order:stroke fill markers;enable-background:accumulate"
+           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;paint-order:stroke fill markers;enable-background:accumulate"
            d="m 8,0.8225804 c -0.41985,0 -0.8430167,0.0235902 -1.2580646,0.0967742 L 7.0645161,2.6935482 C 6.4204863,2.8073296 5.8359104,3.0496625 5.2903225,3.3709676 L 4.3870966,1.7903224 C 3.6571226,2.211773 2.9934193,2.7575257 2.4516127,3.4032256 L 3.8387095,4.564516 C 3.4418151,5.039013 3.123299,5.5881167 2.9032256,6.1774193 L 1.2258062,5.564516 C 0.93751687,6.3565842 0.77419325,7.2054857 0.7741933,8.0483871 h 1.7741936 c 0,0.6522564 0.1366058,1.2877348 0.3548387,1.8709678 L 1.2258062,10.532258 c 0.2882893,0.792068 0.6839999,1.51559 1.2258065,2.161291 l 1.3870968,-1.161291 c 0.4092076,0.483909 0.9035253,0.904834 1.451613,1.225807 l -0.9032259,1.548387 c 0.7299741,0.42145 1.524743,0.7246 2.3548388,0.870968 L 7.0645161,13.435484 C 7.3676517,13.489172 7.6830889,13.5 8,13.5 c 0.3230075,0 0.6270955,-0.04066 0.9354839,-0.09677 l 0.3225807,1.77419 C 10.08816,15.031052 10.88293,14.727902 11.612903,14.306452 l -0.903225,-1.548387 c 0.548711,-0.322636 1.043093,-0.740675 1.451612,-1.225807 l 1.387097,1.161291 c 0.541807,-0.645701 0.937518,-1.369223 1.225807,-2.161291 L 13.096774,9.9193549 C 13.317666,9.331221 13.451613,8.7071175 13.451613,8.0483871 h 1.774194 c 0,-0.8429014 -0.163324,-1.6918029 -0.451613,-2.4838711 l -1.67742,0.6129033 C 12.874296,5.5899022 12.561699,5.0380897 12.16129,4.564516 L 13.548387,3.4032256 C 13.00658,2.7575257 12.342877,2.211773 11.612903,1.7903224 L 10.709678,3.3387095 C 10.167113,3.0234585 9.5710942,2.8058422 8.9354839,2.6935482 L 9.2580646,0.9193546 C 8.8430166,0.84617039 8.41985,0.8225804 8,0.8225804 Z m 0,3.0645162 c 2.27773,0 4.16129,1.8835608 4.16129,4.1612905 0,2.2777299 -1.88356,4.1612909 -4.16129,4.1612909 -2.2777297,0 -4.1612905,-1.883561 -4.1612905,-4.1612909 C 3.8387095,5.7706574 5.7222703,3.8870966 8,3.8870966 Z m 0,0.5161291 c -2.0338986,0 -3.6451614,1.6112628 -3.6451614,3.6451614 0,2.0338979 1.6112628,3.6451619 3.6451614,3.6451619 2.033899,0 3.645161,-1.611264 3.645161,-3.6451619 C 11.645161,6.0144885 10.033899,4.4032257 8,4.4032257 Z m -2.2e-6,1.7903204 c 1.131631,0 1.8064517,0.7851243 1.8064517,1.8064517 0,1.0213274 -0.7173816,1.8064517 -1.8064517,1.8064517 -1.0890701,0 -1.8064517,-0.7851241 -1.8064517,-1.8064517 0,-1.0213276 0.6748207,-1.8064517 1.8064517,-1.8064517 z"
            id="path3003"
            inkscape:connector-curvature="0"

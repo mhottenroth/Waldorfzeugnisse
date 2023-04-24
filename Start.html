@@ -11,9 +11,9 @@
   <body>
 
     <!-- The overlays background. -->
-    
+
     <div id="overlay_background" style="z-index: 999999; position: absolute; top: 0; left: 0px; background-color: #C8B4AA; opacity: 0; visibility: hidden"></div>
-    
+
 
     <!-- The import dialog overlay. -->
 
@@ -90,255 +90,314 @@
       </table>
       <hr>
     </div>
-    
+
 
     <!-- The City within the logo. -->
 
     <div id="place" style="position: absolute; color: white; font-weight: bold">LEIPZIG</div>
 
     <table id="header">
-      <tr>
-        <td>
-          <table id="tableHeader">
-            <tr>
-              <!-- Logo and credits. -->
-              <td id="programInfo">
-                <div id="logoAndCredits">
-                  <img src="data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
-                  <div id="nameAndCredits"><b id="programName" style="font-size: 18px">Zeugnisprogramm</b> <br> <div id="author">Marcus Hottenroth (2021)</div></div>
-                </div>
-              </td>
-              <!-- General certs data, table. -->
-              <td style="vertical-align: top">
-                <table id="class_date_container">
-                  <tr>
-                    <td>Schuljahr:</td>
-                    <td><div id="label_year" style="text-align: right">2020/21</div></td>
-                  </tr>
-                  <tr>
-                    <td>Klasse:</td>
-                    <td><input type="text" id="input_class" pattern="[1-9][0-9]?[A-Za-z]?" onchange="checkValidity()" oninput="updateSession_class(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>Zeugnisdatum:</td>
-                    <td><input type="text" id="input_date" onclick="overlay_calendar_toggle(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>Ort:</td>
-                    <td><input type="text" id="input_place" oninput="updatePlace(this)"></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-        <td id="space_beforeSession"></td>
-        <td id="sessionOptions" style="vertical-align: top; text-align: right; font-size: 16px; font-weight: normal">
-          <button type="button" class="button_session" onclick="saveSession()"><img src="./data_gui/images/save.svg" style="vertical-align: bottom"> Sitzung speichern unter …</button>    <button type="button" class="button_session" onclick="document.getElementById('getSessionFileToLoad').click()"><img src="./data_gui/images/load.svg" style="vertical-align: bottom"> Sitzung laden …</button>  <button type="button" class="button_session" onclick="overlay_certGeneration_open()"><img src="./data_gui/images/generate.svg" style="vertical-align: bottom"> Zeugnisse erstellen …</button>  <button type="button" class="button_session" onclick="document.getElementById('getSessionFilesToMerge').click()"><img src="./data_gui/images/merge.svg" style="vertical-align: bottom"> Sitzungsdaten zusammenführen …</button>
-          <!-- Link which gets »clicked« to save a session. -->
-          <a id="saveSession_prompt" href="data:text/plain;charset=utf-8," download="Sitzung.txt"></a>
-          <!-- File chooser. -->
-          <input type='file' multiple id="getSessionFilesToMerge" style="display:none" onchange="chooseSessionsToMerge(this)">
-          <input type='file' id="getSessionFileToLoad" style="display:none" onchange="chooseSessionToLoad(this)">
-          <hr id="sessionUnderline" style="background-color: black; background: black">
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <table id="tableHeader">
+              <tr>
+                <!-- Logo and credits. -->
+                <td id="programInfo">
+                  <div id="logoAndCredits">
+                    <img src="data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
+                    <div id="nameAndCredits"><b id="programName" style="font-size: 18px">Zeugnisprogramm</b> <br> <div id="author">Marcus Hottenroth (2021)</div></div>
+                  </div>
+                </td>
+                <!-- General certs data, table. -->
+                <td style="vertical-align: top">
+                  <table id="class_date_container">
+                    <tr>
+                      <td>Schuljahr:</td>
+                      <td><div id="label_year" style="text-align: right">2020/21</div></td>
+                    </tr>
+                    <tr>
+                      <td>Klasse:</td>
+                      <td><input type="text" id="input_class" pattern="[1-9][0-9]?[A-Za-z]?" onchange="checkValidity()" oninput="updateSession_class(this)"></td>
+                    </tr>
+                    <tr>
+                      <td>Zeugnisdatum:</td>
+                      <td><input type="text" id="input_date" onclick="overlay_calendar_toggle(this)"></td>
+                    </tr>
+                    <tr>
+                      <td>Ort:</td>
+                      <td><input type="text" id="input_place" oninput="updatePlace(this)"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td id="space_beforeSession"></td>
+          <td id="sessionOptions" style="vertical-align: top; text-align: right; font-size: 16px; font-weight: normal">
+            <button type="button" class="button_session" onclick="saveSession()"><img src="./data_gui/images/save.svg" style="vertical-align: bottom"> Sitzung speichern unter …</button>    <button type="button" class="button_session" onclick="document.getElementById('getSessionFileToLoad').click()"><img src="./data_gui/images/load.svg" style="vertical-align: bottom"> Sitzung laden …</button>  <button type="button" class="button_session" onclick="overlay_certGeneration_open()"><img src="./data_gui/images/generate.svg" style="vertical-align: bottom"> Zeugnisse erstellen …</button>  <button type="button" class="button_session" onclick="document.getElementById('getSessionFilesToMerge').click()"><img src="./data_gui/images/merge.svg" style="vertical-align: bottom"> Sitzungsdaten zusammenführen …</button>
+            <!-- Link which gets »clicked« to save a session. -->
+            <a id="saveSession_prompt" href="data:text/plain;charset=utf-8," download="Sitzung.txt"></a>
+            <!-- File chooser. -->
+            <input type='file' multiple id="getSessionFilesToMerge" style="display:none" onchange="chooseSessionsToMerge(this)">
+            <input type='file' id="getSessionFileToLoad" style="display:none" onchange="chooseSessionToLoad(this)">
+            <hr id="sessionUnderline" style="background-color: black; background: black">
+          </td>
+        </tr>
+      </tbody>
     </table>
 
     <br>
 
     <table id="main">
-      <tr>
-        <!-- First line, first cell main controls. -->
-        <td id="pupilsEditCell" style="vertical-align: top; border: 1px solid black; padding: 2px; border-radius: 10px">
-          <!-- Table built up from pupil button. -->
-          <table id="buttonsTable_pupils">
-            <tr>
-              <td><span>Hinzufügen:</span></td>
-              <td><button type="button" id="addPupil" style="width: 100%" onclick="addPupil()">Einen Schüler hinzufügen</button></td>
-              <td><button id="importPupilsList" onclick="document.getElementById('getPupilsListFile').click()">Schülerliste importieren …</button></td>
-              <input type='file' id="getPupilsListFile" style="display:none" onchange="importPupils(this)">
-            </tr>
-            <tr id="saveRow_pupils">
-              <td>Speichern:</td>
-              <td><button type="button" onclick="exportPupilsList()" id="button_exportPupilsList">Schülerliste exportieren …</button></td>
-              <a id="exportPupilsList_prompt" href="data:application/json;charset=utf-8," download="Schülerliste.txt"></a>
-            </tr>
-          </table>
-          <hr style="margin-bottom: 45px">
-          <div id="pupilsListTable_caption" style="text-align: center"><b>Schülerliste</b></div>
-          <!-- Wrap div around the table to make it scrollable. -->
-          <div id="pupilTableWrapper">
-            <table id="t01" style="border-radius: 10px">
-              <tr id="header">
-                <th></th>
-                <th title="Zu druckende Schülerzeugnisse"><span>Drucken?</span></th>
-                <th align=right><span>#</span></th>
-                <th><span data-order="none" onclick="sortPupilsTableByFirstName(this)" id="pupilsTable_firstName" title="Klicken, um auf-/absteigend zu sortieren">Vorname •</span></th>
-                <th><span data-order="none" onclick="sortPupilsTableByLastName(this)" id="pupilsTable_lastName" title="Klicken, um auf-/absteigend zu sortieren">Nachname •</span></th>
-                <th><span>Aktiv</span></th>
-              </tr>
-              <tr class="optionRow">
-                <td><span>alle an-/abwählen:</span></td>
-                <td align=center class="checkboxCell"><input type="checkbox" id="togglePrintAll" checked onclick="checkbox_togglePrintAll(this); updateSession_togglePrintAll(this)"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <!-- This is where pupil rows appear. -->
+      <tbody>
+        <tr>
+          <!-- First line, first panel main controls. -->
+          <td id="panel_pupils" style="vertical-align: top; border: 1px solid black; border-radius: 10px">
+            <!-- Table built up from pupil button. -->
+            <table class="panelHeader">
+              <tbody>
+                <tr>
+                  <td><span>Hinzufügen:</span></td>
+                  <td><button type="button" id="addPupil" style="width: 100%" onclick="addPupil()">Einen Schüler hinzufügen</button></td>
+                  <td><button id="importPupilsList" onclick="document.getElementById('getPupilsListFile').click()">Schülerliste importieren …</button></td>
+                  <input type='file' id="getPupilsListFile" style="display:none" onchange="importPupils(this)">
+                </tr>
+                <tr id="saveRow_pupils">
+                  <td>Speichern:</td>
+                  <td><button type="button" onclick="exportPupilsList()" id="button_exportPupilsList">Schülerliste exportieren …</button></td>
+                  <a id="exportPupilsList_prompt" href="data:application/json;charset=utf-8," download="Schülerliste.txt"></a>
+                </tr>
+              </tbody>
             </table>
-          </div>
-        </td>
+            <hr>
+            <table class="panelBody_top">
+              <tbody>
+                <tr style="vertical-align: bottom; text-align: center">
+                  <td><b>Schülerliste</b></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Wrap div around the table to make it scrollable. -->
+            <div id="pupilTableWrapper">
+              <table id="t01" style="border-radius: 10px">
+                <tbody>
+                  <tr id="header">
+                    <th></th>
+                    <th title="Zu druckende Schülerzeugnisse"><span>Drucken?</span></th>
+                    <th align=right><span>#</span></th>
+                    <th><span data-order="none" onclick="sortPupilsTableByFirstName(this)" id="pupilsTable_firstName" title="Klicken, um auf-/absteigend zu sortieren">Vorname •</span></th>
+                    <th><span data-order="none" onclick="sortPupilsTableByLastName(this)" id="pupilsTable_lastName" title="Klicken, um auf-/absteigend zu sortieren">Nachname •</span></th>
+                    <th><span>Aktiv</span></th>
+                  </tr>
+                  <tr class="optionRow">
+                    <td style="text-align: right"><span>alle an-/abwählen:</span></td>
+                    <td align=center class="checkboxCell"><input type="checkbox" id="togglePrintAll" checked="" onclick="checkbox_togglePrintAll(this); updateSession_togglePrintAll(this)"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <!-- This is where pupil rows appear. -->
+                </tbody>
+              </table>
+            </div>
+          </td>
 
-        <!-- Subjects list. -->
-        <td id="subjectsEditCell" style="vertical-align: top; border: 1px solid black; padding: 2px; border-radius: 10px">
-          <table id="buttonsTable_subjects">
-            <tr>
-              <td><span>Hinzufügen:</span></td>
-              <td><button type="button" style="width: 100%" id="button_addSubject" onclick="addSubject()">Ein Fach hinzufügen</button></td>
-              <td><button id="importSubjectsList" onclick="document.getElementById('getSubjectsListFile').click()" style="width: 100%">Fächerliste importieren …</button></td>
-              <input type='file' id="getSubjectsListFile" style="display:none" onchange="importSubjects(this)">
-            </tr>
-            <tr>
-              <td></td>
-              <td colspan=2 style="border-bottom: 2px solid black; padding-top: 2px;"></td>
-            </tr>
-            <tr></tr>
-            <tr>
-              <td></td>
-              <td><select size=1 id="specialPageSelector" style="width: 100%" onchange="enableDisableAddSpecialPageButton(this)">
-                  <option class="subject" value="bitte wählen">bitte wählen</option>
-                  <option class="subject" value="Eurythmieabschluss">Eurythmieabschluss</option>
-                  <option class="subject" value="Jahresarbeit">Jahresarbeit</option>
-                  <option class="subject" value="Klassenspiel">Klassenspiel</option>
-                </select>
-              </td>
-              <td><button type="button" id="button_addSpecialPage" onclick="addSpecialPage(this)" style="width: 100%" disabled>als Sonderseite hinzufügen</button></td>
-            </tr>
-            <tr id="saveRow_subjects">
-              <td>Speichern:</td>
-              <td><button type="button" onclick='exportSubjectsList()' id="button_exportSubjectsList">Fächerliste exportieren …</button></td>
-              <a id="exportSubjectsList_prompt" href="data:text/plain;charset=utf-8,your code here" download="Fächerliste.txt"></a>
-            </tr>
-          </table>
-          <hr style="margin-bottom: 1.5em">
-          <table id="table_editSubjects">
-            <tr>
-              <td>Fachbezeichnung:<input type="text" style="margin-left: 2px" id="input_subjectName" oninput="updateSubjectNameInList(this); updateSession_subjectName(this)" onchange="deleteExcessSpaces(this)" onkeydown="changeSubjectWithinInput(this)"><button type="button" id="button_deleteSubject" style="margin-left: 2px" onclick="deleteSubjectFromList_button()">Fach löschen</button></td>
-            </tr>
-            <tr>
-              <td>Fach verschieben:<button type="button" id="button_moveSubjectDown" onclick="moveSubjectDown()" style="margin-left: 2px">▼</button><button type="button" id="button_moveSubjectUp" onclick="moveSubjectUp()" style="margin-left: 2px">▲</button></td>
-            </tr>
-            <tr>
-              <td id="cell_list_subjects" style="width: 361px">
-                <select size=2 id="list_subjects" style="height: 200px" onclick="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()" onchange="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()"onkeydown="deleteSubjectFromList_key(this)">
-                  <!-- <option class="subject" value="0">leeres Fach</option> -->
-                </select>
-              </td>
-            </tr>
-          </table>
-        </td>
+          <!-- Subjects list. -->
+          <td id="panel_subjects" style="vertical-align: top; border: 1px solid black; border-radius: 10px">
+            <table class="panelHeader">
+              <tbody>
+                <tr>
+                  <td><span>Hinzufügen:</span></td>
+                  <td><button type="button" style="width: 100%" id="button_addSubject" onclick="addSubject()">Ein Fach hinzufügen</button></td>
+                  <td><button id="importSubjectsList" onclick="document.getElementById('getSubjectsListFile').click()" style="width: 100%">Fächerliste importieren …</button></td>
+                  <input type='file' id="getSubjectsListFile" style="display:none" onchange="importSubjects(this)">
+                </tr>
+                <tr>
+                  <td></td>
+                  <td colspan=2 style="border-bottom: 2px solid black"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td></td>
+                  <td><select size=1 id="specialPageSelector" style="width: 100%" onchange="enableDisableAddSpecialPageButton(this)">
+                      <option class="subject" value="bitte wählen">bitte wählen</option>
+                      <option class="subject" value="Eurythmieabschluss">Eurythmieabschluss</option>
+                      <option class="subject" value="Jahresarbeit">Jahresarbeit</option>
+                      <option class="subject" value="Klassenspiel">Klassenspiel</option>
+                    </select>
+                  </td>
+                  <td><button type="button" id="button_addSpecialPage" onclick="addSpecialPage(this)" style="width: 100%" disabled>als Sonderseite hinzufügen</button></td>
+                </tr>
+                <tr id="saveRow_subjects">
+                  <td>Speichern:</td>
+                  <td><button type="button" onclick='exportSubjectsList()' id="button_exportSubjectsList">Fächerliste exportieren …</button></td>
+                  <a id="exportSubjectsList_prompt" href="data:text/plain;charset=utf-8,your code here" download="Fächerliste.txt"></a>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <table class="panelBody_top">
+              <tbody>
+                <tr>
+                  <td>Fachbezeichnung:</td>
+                  <td><input type="text" style="margin-left: 2px" id="input_subjectName" oninput="updateSubjectNameInList(this); updateSession_subjectName(this)" onchange="deleteExcessSpaces(this)" onkeydown="changeSubjectWithinInput(this)"></td>
+                  <td><button type="button" id="button_deleteSubject" style="margin-left: 2px" onclick="deleteSubjectFromList_button()">Fach löschen</button></td>
+                </tr>
+                <tr>
+                  <td>Fach verschieben:</td>
+                  <td><button type="button" id="button_moveSubjectDown" onclick="moveSubjectDown()" style="margin-left: 2px">▼</button><button type="button" id="button_moveSubjectUp" onclick="moveSubjectUp()" style="margin-left: 2px">▲</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <select size=2 id="list_subjects" style="height: 200px" onclick="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()" onchange="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()"onkeydown="deleteSubjectFromList_key(this)">
+            </select>
+          </td>
 
-        <!-- Evaluation texts. -->
-        <td id="evaluationWidget" style="vertical-align: top; border: 1px solid black; padding: 2px; border-radius: 10px">
 
-          <!-- Standard cert page. -->
-          <div id="defaultPage" class="subjectInfoPage" style="display: block">
-            <table >
+
+          <!-- Evaluation texts. -->
+          <td id="panel_evaluation" style="vertical-align: top; border: 1px solid black; border-radius: 10px">
+
+            <!-- Standard cert page. -->
+            <div id="defaultPage" class="subjectInfoPage" style="display: block">
+              <table class="panelHeader">
+                <tbody>
+                  <tr style="vertical-align: top">
+                    <td><span>Lehrer:</span></td>
+                    <td><input type="text" id="input_teacher" onchange="deleteExcessSpaces(this)" oninput="updateSession_subjectTeacher(this)"></td>
+                    <td><button type="button" id="button_applyTeacherToAll" onclick="applyTeacherToAll()">Lehrer auf alle Schüler übertragen</button></td>
+                  </tr>
+                  <tr style="vertical-align: top">
+                    <td><span>Note:</span></td>
+                    <td><input type="text" id="input_mark" oninput="updateSession_subjectMark(this)"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <span ></span>
+              <hr>
+              <table class="panelBody_top">
+                <tbody>
+                  <tr style="vertical-align: bottom">
+                    <td><div id="heading_subjectContents">Inhalte im Fach …</div></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div><textarea id="textarea_subjectContents" spellcheck="true" style="height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_subjectContents(this)"></textarea></div>
+              <div style="text-align: right"><button type="button" id="button_applySubjectContentsToAll" onclick="applySubjectContentsToAll()">Inhalte auf alle Schüler übertragen</button></div>
+              <div style="width: 100%; height: 1em"></div>
+              <div id="heading_evaluation">Zeugnistext für …</div>
+              <textarea id="textarea_evaluation" spellcheck="true" style="height: 200px" oninput="checkTypography(this); updateSession_subjectEvaluation(this)"></textarea>
+            </div>
+
+            <!-- Eurythmieabschluss. -->
+            <div id="eurythmieabschlussPage" class="subjectInfoPage" style="display: none">
+              <table class="panelHeader">
+                <tbody>
+                  <tr>
+                    <td><span>Hinzufügen:</span></td>
+                    <td><button type="button" onclick="addEurythmieRow_GUI(); addEurythmieRow_session()">Ein Werk hinzufügen</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <hr>
+              <table class="panelBody_top">
+                <tbody>
+                  <tr style="vertical-align: bottom">
+                    <td><div>Für den Eurythmieabschluss erarbeitete Werke:</div></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table id="eurythmieTable" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th><span>Autor</span></th>
+                    <th><span>Werk</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- Eurythmie rows go here. -->
+                </tbody>
+              </table>
+              <div id="heading_evaluation_finalEurythmy">Bewertung des Abschlusses:</div>
+              <textarea id="textarea_finalEurythmy_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_finalEurythmy_evaluation(this)"></textarea>
+
+
+            </div>
+
+            <!-- Jahresarbeit. -->
+            <div id="jahresarbeitPage" class="subjectInfoPage" style="display: none">
+              <table class="panelHeader">
+                <tr>
+                  <td>Betreuer:</td>
+                  <td><input type="text" id="input_jahresarbeit_firstReader" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_firstReader(this)"></td>
+                </tr>
+                <tr>
+                <td>Zweitgutachter:</td>
+                  <td><input type="text" id="input_jahresarbeit_secondReader" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_secondReader(this)"></td>
+                </tr>
+                <tr>
+                  <td>Thema:</td>
+                  <td><input type="text" id="input_jahresarbeit_topic" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_topic(this); checkTypography(this)"></td>
+                </tr>
+              </table>
+              <hr>
+              <table class="panelBody_top">
+                <tbody>
+                  <tr style="vertical-align: bottom">
+                    <td>Prozessbeschreibung:</td>
+                  </tr>
+                </tbody>
+              </table>
+              <textarea id="textarea_jahresarbeit_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilJahresarbeit_evaluation(this)"></textarea>
+            </div>
+
+            <!-- Klassenspiel. -->
+            <div id="klassenspielPage" class="subjectInfoPage" style="display: none">
+              <div class="panelHeader"></div>
+              <hr>
+              <table class="panelBody_top">
+                <tbody>
+                  <tr style="vertical-align: bottom">
+                    <td>Inhalte des Stücks:</td>
+                  </tr>
+                </tbody>
+              </table>
+              <textarea id="textarea_klassenspiel_contents" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilKlassenspiel_contents(this)"></textarea>
+              <div style="text-align: right"><button type="button" id="button_applyKlassenspielContentsToAll" onclick="applyKlassenspielContentsToAll()">Inhalte auf alle Schüler übertragen</button></div>
+              <div style="width: 100%; height: 1em"></div>
+              <div id="heading_klassenspiel_evaluation">Bewertung für …:</div>
+              <textarea id="textarea_klassenspiel_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilKlassenspiel_evaluation(this)"></textarea>
+            </div>
+          </td>
+
+          <!-- Final remarks. -->
+          <td id="panel_finalRemarks" style="vertical-align: top; border: 1px solid black; border-radius: 10px">
+            <table class="panelHeader">
               <tr>
-                <td><span>Lehrer:</span></td>
-                <td><input type="text" id="input_teacher" onchange="deleteExcessSpaces(this)" oninput="updateSession_subjectTeacher(this)"></td>
-                <td><button type="button" id="button_applyTeacherToAll" onclick="applyTeacherToAll()">Lehrer auf alle Schüler übertragen</button></td>
+                <td><span>Fehltage, gesamt:</span></td>
+                <td><input type="text" id="input_daysAbsent" oninput="updateSession_pupilDaysAbsent(this)"></td>
               </tr>
               <tr>
-                <td><span>Note:</span></td>
-                <td><input type="text" id="input_mark" oninput="updateSession_subjectMark(this)"></td>
+                <td><span>davon unentschuldigt:</span></td>
+                <td><input type="text" id="input_daysAbsent_unexplained" oninput="updateSession_pupilDaysAbsent_unexplained(this)"></td>
               </tr>
             </table>
             <span ></span>
-            <hr style="margin-bottom: 44px; margin-top: 51px">
-            <div id="heading_subjectContents" style="margin-bottom: 0.1em">Inhalte im Fach …</div>
-            <div><textarea id="textarea_subjectContents" spellcheck="true" style="height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_subjectContents(this)"></textarea></div>
-            <button type="button" id="button_applySubjectContentsToAll" onclick="applySubjectContentsToAll()" style="float: right; width: 200px">Inhalte auf alle Schüler übertragen</button>
-            <div style="margin-top: 4em; margin-bottom: 0.1em" id="heading_evaluation">Zeugnistext für …</div>
-            <textarea id="textarea_evaluation" spellcheck="true" style="height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_subjectEvaluation(this)"></textarea>
-          </div>
-
-          <!-- Eurythmieabschluss. -->
-          <div id="eurythmieabschlussPage" class="subjectInfoPage" style="display: block">
-            <table>
-              <tr>
-                <td><span>Hinzufügen:</span></td>
-                <td><button type="button" onclick="addEurythmieRow_GUI(); addEurythmieRow_session()">Ein Werk hinzufügen</button></td>
+            <hr>
+            <table class="panelBody_top">
+              <tr style="vertical-align: bottom">
+                <td><span id="heading_panel_finalRemarks">Bemerkungen für …</span></td>
               </tr>
             </table>
-            <hr style="margin-bottom: 44px; margin-top: 73px">
-            <div style="margin-bottom: 0.1em">Für den Eurythmieabschluss erarbeitete Werke:</div>
-            <table id="eurythmieTable" style="width: 100%">
-              <tr>
-                <th></th>
-                <th><span>Autor</span></th>
-                <th><span>Werk</span></th>
-              </tr>
-              <!-- Eurythmie rows go here. -->
-            </table>
-            <div id="heading_evaluation_finalEurythmy" style="margin-bottom: 0.1em; margin-top: 3em">Bewertung des Abschlusses:</div>
-            <textarea id="textarea_finalEurythmy_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_finalEurythmy_evaluation(this)"></textarea>
 
-
-          </div>
-
-          <!-- Jahresarbeit. -->
-          <div id="jahresarbeitPage" class="subjectInfoPage" style="display: none">
-            <table>
-              <tr>
-                <td>Betreuer:</td>
-                <td><input type="text" id="input_jahresarbeit_firstReader" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_firstReader(this)"></td>
-              </tr>
-              <tr>
-              <td>Zweitgutachter:</td>
-                <td><input type="text" id="input_jahresarbeit_secondReader" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_secondReader(this)"></td>
-              </tr>
-              <tr>
-                <td>Thema:</td>
-                <td><input type="text" id="input_jahresarbeit_topic" onchange="deleteExcessSpaces(this)" oninput="updateSession_pupilJahresarbeit_topic(this); checkTypography(this)" style="width: 47.2ch"></td>
-              </tr>
-            </table>
-            <hr style="margin-bottom: 44px; margin-top: 26px">
-            <div style="margin-bottom: 0.1em">Prozessbeschreibung:</div>
-            <textarea id="textarea_jahresarbeit_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilJahresarbeit_evaluation(this)"></textarea>
-          </div>
-
-          <!-- Klassenspiel. -->
-          <div id="klassenspielPage" class="subjectInfoPage" style="display: none">
-            <hr style="margin-top: 97px; margin-bottom: 44px">
-            <div style="margin-bottom: 0.1em">Inhalte des Stücks:</div>
-            <textarea id="textarea_klassenspiel_contents" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilKlassenspiel_contents(this)"></textarea>
-            <button type="button" id="button_applyKlassenspielContentsToAll" onclick="applyKlassenspielContentsToAll()" style="float: right; width: 200px">Inhalte auf alle Schüler übertragen</button>
-            <div style="margin-top: 4em; margin-bottom: 0.1em" id="heading_klassenspiel_evaluation">Bewertung für …:</div>
-            <textarea id="textarea_klassenspiel_evaluation" spellcheck="true" style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilKlassenspiel_evaluation(this)"></textarea>
-          </div>
-        </td>
-        
-        <!-- Final remarks. -->
-        <td id="finalRemarks" style="vertical-align: top; border: 1px solid black; padding: 2px; border-radius: 10px">
-          <table >
-            <tr>
-              <td><span>Fehltage, gesamt:</span></td>
-              <td><input type="text" id="input_daysAbsent" oninput="updateSession_pupilDaysAbsent(this)"></td>
-            </tr>
-            <tr>
-              <td><span>davon unentschuldigt:</span></td>
-              <td><input type="text" id="input_daysAbsent_unexplained" oninput="updateSession_pupilDaysAbsent_unexplained(this)"></td>
-            </tr>
-          </table>
-          <span ></span>
-          <hr style="margin-bottom: 45px; margin-top: 51px">
-          <span id="heading_finalRemarks" style="margin-bottom: 0.1em">Bemerkungen für …</span>
-          <textarea id="textarea_finalRemarks" spellcheck=true style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilFinalRemarks(this)"></textarea>
-        </td>
-      </tr>
+            <textarea id="textarea_panel_finalRemarks" spellcheck=true style="width: 100%; height: 200px; resize: none; overflow-y: scroll" oninput="checkTypography(this); updateSession_pupilFinalRemarks(this)"></textarea>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </body>
 
@@ -371,7 +430,7 @@
 
     var SESSIONS_imported = []
 
-    
+
     // Adding some generic initial data.
 
     addPupil("Max", "Muster")
@@ -406,7 +465,7 @@
 
     var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
     var weekdayNames = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-    
+
 
     var i = document.getElementById("input_date");
     i.value = (d.getDate().toString() + "." + (d.getMonth() + 1).toString().padStart(2, '0') + "." + d.getFullYear().toString());
@@ -417,7 +476,6 @@
     document.getElementById("overlay_calendar_month").innerText = monthNames[d.getMonth()]
 
     document.getElementById("input_place").value = "Leipzig"
-
 
 
     /***************************************************
@@ -472,7 +530,7 @@
       }
     }
 
-    
+
     function getWeekNumber(datestring){
       // datestring is ISO-formatted (YYYYMMDD).
       var year = parseInt(datestring.match(/(^[0-9]{4})/)[1])
@@ -480,7 +538,7 @@
       var day = parseInt(datestring.match(/^[0-9]{4}[0-9]{2}([0-9]{2})/)[1])
 
       var d = new Date(year, month - 1, day)
-      
+
       var firstOfYear = new Date(year, 0, 1)
       // So = 0, Mo = 1 etc. → So = 6; Mo = 0 etc.
       var firstOfYear_weekday = (firstOfYear.getDay() + 6) % 7
@@ -488,13 +546,14 @@
       // Add half a day (0.5 * 1000 * 3600 * 24) to compensate summer time.
       var week = Math.ceil(( d.valueOf() + 0.5 * 1000 * 3600 * 24 - firstOfYear.valueOf() + firstOfYear_weekday * 1000 * 3600 * 24 ) / 1000 / 3600 / 24 / 7)
 
+      // Week number calculation based on ISO 8601.
       if (firstOfYear_weekday > 3){
         week -= 1
         if (week == 0){
-          week = getWeekNumber((year-1).toString()-1 + '1231')
+          week = getWeekNumber((year-1).toString() + '1231')
         }
       }
-      
+
       return week
     }
 
@@ -503,28 +562,28 @@
       e.value = e.value.replace(/^ */, "").replace(/ {2,}/, " ").replace(/ *$/, "")
     }
 
-    
+
     function generatePupilDataset(firstName, lastName){
       var dataset = {
         "firstName": firstName || "",
         "lastName": lastName || "",
         "daysAbsent": "",
         "daysAbsent_unexplained": "",
-        "finalRemarks": "",
+        "panel_finalRemarks": "",
         "print": true,
         "subjects": []
       }
 
       var subjects = document.getElementById("list_subjects").options
       for (var s = 0; s < subjects.length; s++){
-        dataset.subjects[subjects[s].value] = { 
+        dataset.subjects[subjects[s].value] = {
           "name": subjects[s].innerText
         }
       }
       return dataset
     }
 
-    
+
     function addSubjectToAllPupils(name){
       for (var p = 0; p < SESSION.length; p++){
         var i = document.getElementById("list_subjects").options.length - 1
@@ -544,7 +603,7 @@
           break
         }
       }
-      
+
       var pupils = document.getElementsByClassName("pupilRow")
       var fn = pupils[index].cells[3].children[0].value
       var ln = pupils[index].cells[4].children[0].value
@@ -629,7 +688,7 @@
 
     function updateSession_togglePrintAll(e){
       for (var p = 0; p < SESSION.length; p++){
-        SESSION[p].print = e.checked 
+        SESSION[p].print = e.checked
       }
     }
 
@@ -665,7 +724,7 @@
 
 
     function updateSession_pupilFinalRemarks(e){
-      SESSION[getSelectedPupil().index].finalRemarks = e.value
+      SESSION[getSelectedPupil().index].panel_finalRemarks = e.value
     }
 
 
@@ -673,7 +732,7 @@
       var p = getSelectedPupil()
       var s = getSelectedSubject()
       var index = e.parentNode.parentNode.dataset.index
-      
+
       SESSION[p.index].subjects[s.index].works[index].author = e.value
     }
 
@@ -682,15 +741,15 @@
       var p = getSelectedPupil()
       var s = getSelectedSubject()
       var index = e.parentNode.parentNode.dataset.index
-      
+
       SESSION[p.index].subjects[s.index].works[index].work = e.value
     }
 
-  
+
     function updateSession_pupilJahresarbeit_firstReader(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].firstReader = e.value
     }
 
@@ -698,7 +757,7 @@
     function updateSession_pupilJahresarbeit_secondReader(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].secondReader = e.value
     }
 
@@ -706,7 +765,7 @@
     function updateSession_pupilJahresarbeit_topic(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].topic = e.value
     }
 
@@ -714,7 +773,7 @@
     function updateSession_pupilJahresarbeit_evaluation(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].evaluation = e.value
     }
 
@@ -722,7 +781,7 @@
     function updateSession_pupilKlassenspiel_contents(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].contents = e.value
     }
 
@@ -730,7 +789,7 @@
     function updateSession_pupilKlassenspiel_evaluation(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].evaluation = e.value
     }
 
@@ -738,7 +797,7 @@
     function updateSession_finalEurythmy_evaluation(e){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-      
+
       SESSION[p.index].subjects[s.index].evaluation = e.value
     }
 
@@ -755,7 +814,7 @@
 
 
       for (i = 0; i < files.length; i++){
-        var reader = new FileReader();      
+        var reader = new FileReader();
 
         reader.onload = function(e){
           // The whole imported session as a string.
@@ -768,7 +827,7 @@
 
             var overlay_pupilsList = ""
             var overlay_subjectsList = ""
-            
+
             for (i = 0; i < SESSIONS_imported.length; i++){
               // Get a list of new pupils.
               var re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "[^"]*";SESSION\\[[0-9]+\\]\.lastName = "[^"]*"', 'g')
@@ -784,7 +843,7 @@
                   console.log("Not adding " + fn + " " + ln + ", because it’s already in the session or in another imported file.")
                 }
               }
-              
+
               // Get a list of new subjects.
               re = new RegExp('SESSION\\[0\\]\.subjects\\[[0-9]*\\].name = "[^"]*"', 'g')
               finds = SESSIONS_imported[i].match(re)
@@ -813,7 +872,7 @@
             document.getElementById("overlay_infocanvas").style.top = 0.5 * window.innerHeight - 0.5 * document.getElementById("overlay_infocanvas").offsetHeight
           }
         };
-  
+
         reader.onerror = function(e){
           console.log(e.target.error.name);
         }
@@ -851,21 +910,21 @@
           for (j = 0; j < SESSION.length; j++){
             var pFirstName = SESSION[j].firstName
             var pLastName = SESSION[j].lastName
-    
+
             //console.log("Suche nach " + pFirstName + " " + pLastName + " in der Sitzung.")
-            
+
             re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "' + pFirstName + '";SESSION\\[[0-9]+\\]\.lastName = "' + pLastName + '"')
             var index_pupil_imported = SESSIONS_imported[s].match(re)
-            
+
             // If the pupil has an index in the imported session (Religion might be an example for imported subjects which don’t contain all pupils), …
             if (index_pupil_imported){
               index_pupil_imported = index_pupil_imported[0].match(/(?<=SESSION\[)[0-9]+(?=\])/)
-              
-              // … get the subject’s index in the imported session and … 
+
+              // … get the subject’s index in the imported session and …
               re = new RegExp('SESSION\\[' + index_pupil_imported + '\\].subjects\\[[0-9]+\\]\.name = "' + name_subject + '"')
               var index_subject_imported = SESSIONS_imported[s].match(re)[0].match(/(?<=\.subjects\[)[0-9]+(?=\])/)
               console.log("Index für " + name_subject + " in der importierten Sitzung: " + index_subject_imported)
-          
+
               // … the subject’s index in the current session.
               re = new RegExp('.*"name":"' + name_subject + '"')
               var subjects_currentSession = JSON.stringify(SESSION[j].subjects).match(re)[0]
@@ -882,7 +941,7 @@
                 SESSION[j].subjects[index_subject_current][key] = value
               }
 
-            }            
+            }
           }
         }
       }
@@ -893,7 +952,7 @@
 
     function chooseSessionToLoad(e){
       const file = e.files[0]
-    
+
       if (file){
         var reader = new FileReader()
 
@@ -902,7 +961,7 @@
           var session_new = e.target.result
           SESSION = []
           eval(session_new)
-  
+
           // Reset the pupils list.
           while (document.getElementById('t01').rows.length != 2){
             document.getElementById('t01').deleteRow(2);
@@ -1101,7 +1160,7 @@
       }
     };
 
-  
+
     function exportPupilsList(){
       var s = ""
       var pupils = document.getElementsByClassName("pupilRow")
@@ -1151,12 +1210,12 @@
       }
 
       if (selector.value == "Jahresarbeit"){
-        
+
       }
 
       if (selector.value == "Klassenspiel"){
         // None needed. Klassenspiel uses only »contents« and »evaluation« field.
-      }      
+      }
 
       selector[selector.selectedIndex].disabled = true
       selector[selector.selectedIndex].title = "Dieses Fach ist bereits gelistet."
@@ -1200,7 +1259,7 @@
           }
         }
       }
-      
+
       // Add the new subject to all pupils of the SESSION variable.
       if (! guionly){
         addSubjectToAllPupils(name)
@@ -1223,7 +1282,7 @@
         var value = e.options[e.selectedIndex].innerText;
         var input = document.getElementById("input_subjectName")
         input.value = value
-  
+
         if (input.value.match(/^Sonderseite: /)){
           input.disabled = "true"
           input.title = "Namen von Sonderseiten können nicht editiert werden."
@@ -1275,11 +1334,11 @@
         list.remove(index);
         list.selectedIndex = Math.min(index, list.length - 1);
         document.getElementById("input_subjectName").value = list.options[list.selectedIndex].innerText;
-        
+
         for (var i = list.selectedIndex; i <= list.length - 1; i++){
           list.options[i].value = i.toString()
         }
-        
+
         // Delete the selected subject from all pupils.
         for (var p = 0; p < SESSION.length; p++){
           SESSION[p].subjects[index] = null
@@ -1305,12 +1364,12 @@
     function deleteSubjectFromList_button(e){
       var list = document.getElementById("list_subjects");
       var index = list.selectedIndex;
-      
+
       // Reenable the deleted subject in the special subject list, if the deleted is a special one.
       if (list[index].innerText.match(/^Sonderseite: /)){
         reenableSpecialSubject(list.options[index].innerText)
       }
-       
+
       list.remove(index);
       list.selectedIndex = Math.min(index, list.length - 1);
       document.getElementById("input_subjectName").value = list.options[list.selectedIndex].innerText;
@@ -1319,7 +1378,7 @@
         list.options[i].value = i.toString()
       }
       document.getElementById("input_subjectName").value = list.options[list.selectedIndex].innerText;
-      
+
       // Delete the selected subject from all pupils.
       for (var p = 0; p < SESSION.length; p++){
         SESSION[p].subjects[index] = null
@@ -1328,7 +1387,7 @@
         }
         SESSION[p].subjects.length = SESSION[p].subjects.length - 1
       }
-      
+
       // Disable the delete button, if the list has only one entry.
       if (list.length == 1){
         document.getElementById("button_deleteSubject").disabled = true
@@ -1356,7 +1415,7 @@
       }
     };
 
-    
+
     function moveSubjectDown(){
       var list = document.getElementById("list_subjects");
       var index = list.selectedIndex;
@@ -1467,7 +1526,7 @@
       }
 
       document.getElementById("exportSubjectsList_prompt").href = 'data:text/plain;charset=utf-8,' + s
-      
+
       // Click the invisible download button to prompt the user to save the file.
       document.getElementById("exportSubjectsList_prompt").click()
     }
@@ -1479,7 +1538,7 @@
       for (var p = 0; p < SESSION.length; p++){
         SESSION[p].subjects[sIndex].contents = SESSION[pIndex].subjects[sIndex].contents
       }
-      
+
       var b = document.getElementById("button_applySubjectContentsToAll")
       var t = b.innerText
       b.innerText = "Inhalte wurden übertragen!"
@@ -1511,99 +1570,104 @@
       for (var p = 0; p < SESSION.length; p++){
         SESSION[p].subjects[sIndex].contents = SESSION[pIndex].subjects[sIndex].contents
       }
-      
+
       var b = document.getElementById("button_applyKlassenspielContentsToAll")
       var t = b.innerText
       b.innerText = "Inhalte wurden übertragen!"
-      setTimeout(function(){
-        b.innerText = t
-      }, 2000)
+      setTimeout(
+        function(){
+          b.innerText = t
+        },
+        2000
+      )
     }
 
 
     function updateSubjectPanel(){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
-  
+
       var sPages = document.getElementsByClassName("subjectInfoPage")
-
-      for (i = 0; i < sPages.length; i++){
-        console.log("Setting " + sPages[i].id + " invisible")
-        sPages[i].style = "display: none"
-      }
       
-      if (s.name.match(/^Sonderseite:/)){
-        if (s.name.match("Eurythmie")){
-          document.getElementById("eurythmieabschlussPage").style = "display: block"
-          console.log("Eurythmie aktiv!")
-          var t = document.getElementById("eurythmieTable")
+      for (i = 0; i < sPages.length; i++){
+        if (sPages[i].style.display == "block"){
+          sPages[i].style.display = "none"
+          break
+        }
+      }
 
-          // Delete all eurythmie rows but the header.
-          while (t.rows.length > 1){
-            t.deleteRow(1)
-          }
-
-          // If the pupil has no eurythmie works yet, create an empty array for him.
-          if (! SESSION[p.index].subjects[s.index].works){
-            SESSION[p.index].subjects[s.index].works = []
-          }
-
-          console.log("Works: " + SESSION[p.index].subjects[s.index].works.length)
-          for (w in SESSION[p.index].subjects[s.index].works){
-            console.log("Checking pupil eurythmie work " + w + " of " + SESSION[p.index].subjects[s.index].works.length)
-            console.log("Rows: " + t.rows.length)
-            console.log(t)
-            if (! t.rows[w+1]){
-              addEurythmieRow_GUI()
-            }
-            t.rows[t.rows.length-1].cells[1].children[0].value = SESSION[p.index].subjects[s.index].works[w].author || ""
-            t.rows[t.rows.length-1].cells[2].children[0].value = SESSION[p.index].subjects[s.index].works[w].work || ""
-            console.log("Adding " + SESSION[p.index].subjects[s.index].works[w].author + " and " + SESSION[p.index].subjects[s.index].works[w].work)            
-          }
-          
-          while (t.rows.length > SESSION[p.index].subjects[s.index].works.length + 1 && t.rows.length > 2){
-            t.deleteRow(t.rows.length - 1)
-            console.log("Deleting excess row " + t.rows.length)
-          }
-
-          if (t.rows.length == 2){
-            t.rows[1].cells[0].children[0].disabled = true
-          }
-          
-          if (t.rows.length == 1){
+      if (s.name.match("Eurythmie")){
+        document.getElementById("eurythmieabschlussPage").style.display = "block"
+        document.getElementById("eurythmieabschlussPage").style.opacity = 1
+        console.log("Eurythmie aktiv!")
+        var t = document.getElementById("eurythmieTable")
+        
+        // Delete all eurythmie rows but the header.
+        while (t.rows.length > 1){
+          t.deleteRow(1)
+        }
+        
+        // If the pupil has no eurythmie works yet, create an empty array for him.
+        if (! SESSION[p.index].subjects[s.index].works){
+          SESSION[p.index].subjects[s.index].works = []
+        }
+        
+        console.log("Works: " + SESSION[p.index].subjects[s.index].works.length)
+        for (w in SESSION[p.index].subjects[s.index].works){
+          console.log("Checking pupil eurythmie work " + w + " of " + SESSION[p.index].subjects[s.index].works.length)
+          console.log("Rows: " + t.rows.length)
+          console.log(t)
+          if (! t.rows[w+1]){
             addEurythmieRow_GUI()
-            addEurythmieRow_session()
           }
-
-          document.getElementById("textarea_finalEurythmy_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
+          t.rows[t.rows.length-1].cells[1].children[0].value = SESSION[p.index].subjects[s.index].works[w].author || ""
+          t.rows[t.rows.length-1].cells[2].children[0].value = SESSION[p.index].subjects[s.index].works[w].work || ""
+          console.log("Adding " + SESSION[p.index].subjects[s.index].works[w].author + " and " + SESSION[p.index].subjects[s.index].works[w].work)
         }
-
-        if (s.name.match("Jahresarbeit")){
-          document.getElementById("jahresarbeitPage").style = "display: block"
-
-          document.getElementById("input_jahresarbeit_firstReader").value = SESSION[p.index].subjects[s.index].firstReader || ""
-          document.getElementById("input_jahresarbeit_secondReader").value = SESSION[p.index].subjects[s.index].secondReader || ""
-          document.getElementById("input_jahresarbeit_topic").value = SESSION[p.index].subjects[s.index].topic || ""
-          document.getElementById("textarea_jahresarbeit_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
+        
+        while (t.rows.length > SESSION[p.index].subjects[s.index].works.length + 1 && t.rows.length > 2){
+          t.deleteRow(t.rows.length - 1)
+          console.log("Deleting excess row " + t.rows.length)
         }
-
-        if (s.name.match("Klassenspiel")){
-          document.getElementById("klassenspielPage").style = "display: block"
-
-          document.getElementById("textarea_klassenspiel_contents").value = SESSION[p.index].subjects[s.index].contents || ""
-          document.getElementById("textarea_klassenspiel_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
-          document.getElementById("heading_klassenspiel_evaluation").innerText = "Bewertung für " + SESSION[p.index].firstName.match(/^[^ ]*/)
+        
+        if (t.rows.length == 2){
+          t.rows[1].cells[0].children[0].disabled = true
         }
-
-      } else {
-        document.getElementById("defaultPage").style = "display: block"
+        
+        if (t.rows.length == 1){
+          addEurythmieRow_GUI()
+          addEurythmieRow_session()
+        }
+        
+        document.getElementById("textarea_finalEurythmy_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
+      }
+      else if (s.name.match("Jahresarbeit")){
+        document.getElementById("jahresarbeitPage").style.display = "block"
+        document.getElementById("jahresarbeitPage").style.opacity = 1
+        
+        document.getElementById("input_jahresarbeit_firstReader").value = SESSION[p.index].subjects[s.index].firstReader || ""
+        document.getElementById("input_jahresarbeit_secondReader").value = SESSION[p.index].subjects[s.index].secondReader || ""
+        document.getElementById("input_jahresarbeit_topic").value = SESSION[p.index].subjects[s.index].topic || ""
+        document.getElementById("textarea_jahresarbeit_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
+      }
+      else if (s.name.match("Klassenspiel")){
+        document.getElementById("klassenspielPage").style.display = "block"
+        document.getElementById("klassenspielPage").style.opacity = 1
+        
+        document.getElementById("textarea_klassenspiel_contents").value = SESSION[p.index].subjects[s.index].contents || ""
+        document.getElementById("textarea_klassenspiel_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
+        document.getElementById("heading_klassenspiel_evaluation").innerText = "Bewertung für " + SESSION[p.index].firstName.match(/^[^ ]*/)
+      }
+      else {
+        document.getElementById("defaultPage").style.display = "block"
+        document.getElementById("defaultPage").style.opacity = 1
         
         var heading1 = document.getElementById("heading_subjectContents");
         var heading2 = document.getElementById("heading_evaluation");
-                
+        
         heading1.innerText = "Inhalte im Fach " + s.name + ":";
         heading2.innerText = "Bewertung für " + p.firstName.match(/^[^ ]*/) + ":"
-
+        
         document.getElementById("input_teacher").value = SESSION[p.index].subjects[s.index].teacher || ""
         document.getElementById("input_mark").value = SESSION[p.index].subjects[s.index].mark || ""
         document.getElementById("textarea_subjectContents").value = SESSION[p.index].subjects[s.index].contents || ""
@@ -1629,7 +1693,7 @@
       }
     }
 
-    
+
     function addEurythmieRow_session(){
       var p = getSelectedPupil()
       var s = getSelectedSubject()
@@ -1648,21 +1712,21 @@
         index = i
       }
       var t = document.getElementById("eurythmieTable")
-      
+
       t.deleteRow(index + 1)
       for (i = index; i < t.rows.length; i++){
         t.rows[i].setAttribute("data-index", (i-1).toString())
         SESSION[p.index].subjects[s.index].works[i] = SESSION[p.index].subjects[s.index].works[i+1]
       }
-      SESSION[p.index].subjects[s.index].works.length -= 1      
+      SESSION[p.index].subjects[s.index].works.length -= 1
 
       if (t.rows.length == 2){
         t.rows[1].cells[0].children[0].disabled = true
       }
 
-      
+
     }
- 
+
 
     function checkTypography(e){
       // Change the text while typing.
@@ -1707,14 +1771,14 @@
       var name = p.firstName.match(/^[^ ]*/)
       document.getElementById("input_daysAbsent").value = SESSION[i].daysAbsent || ""
       document.getElementById("input_daysAbsent_unexplained").value = SESSION[i].daysAbsent_unexplained || ""
-      document.getElementById("heading_finalRemarks").innerText = "Bemerkungen für " + name + ":"
-      document.getElementById("textarea_finalRemarks").value = SESSION[i].finalRemarks || ""
+      document.getElementById("heading_panel_finalRemarks").innerText = "Bemerkungen für " + name + ":"
+      document.getElementById("textarea_panel_finalRemarks").value = SESSION[i].panel_finalRemarks || ""
     }
 
 
     function sortPupilsTableByFirstName(e){
       var pupils = document.getElementsByClassName("pupilRow")
-      
+
       if (e.dataset.order == "none"){
         SESSION.sort(function(a, b){
           if (a.firstName < b.firstName){
@@ -1747,7 +1811,7 @@
       } else {
         e.setAttribute('data-order', "desc")
         e.innerText = "Vorname ⏷"
-      }      
+      }
 
       document.getElementById("t01").rows[0].cells[4].children[0].innerText = "Nachname •"
       document.getElementById("t01").rows[0].cells[4].children[0].setAttribute("data-order", "none")
@@ -1805,7 +1869,7 @@
     /************
     * Calendar. *
     ************/
-    
+
     function overlay_calendar_toggle(e){
       if (! e.disabled){
         document.getElementById('overlay_calendar').style.visibility = "visible"
@@ -1844,7 +1908,7 @@
       var firstWeek = getWeekNumber(year + month.toString().padStart(2, '0') + "01")
       // Generate the new table.
       var t = document.createElement('table')
-      
+
       // Generate the rows for the current month.
       var r = document.createElement('TR')
       var c = document.createElement('TD')
@@ -1859,7 +1923,7 @@
         r.append(c)
       })
       t.append(r)
-      
+
       r = document.createElement('TR')
       r.classList.add('row_week')
       c = document.createElement('TD')
@@ -1877,7 +1941,7 @@
         c = document.createElement('TD')
         r.appendChild(c)
       }
-    
+
       var checkingDate = new Date(year, month - 1, 1)
       var d = 1
       while (checkingDate.getMonth() == month - 1){
@@ -1898,7 +1962,7 @@
         c.innerHTML = '<button type="button" class="calendar_dateButton" onclick="overlay_calendar_confirmDate(this)">' + checkingDate.getDate() + '</button>'
         r.appendChild(c)
         d = d + 1
-        checkingDate = new Date(year, month - 1, d)        
+        checkingDate = new Date(year, month - 1, d)
       }
       // Finally, append the latest row.
       t.append(r)
@@ -1941,7 +2005,7 @@
 
       SESSION.date = document.getElementById("input_date").value
       SESSION.year = document.getElementById("label_year").innerText
-      
+
       overlay_calendar_close()
     }
 
@@ -2087,18 +2151,18 @@
     document.getElementById("overlay_certGeneration").dataset.heightSmall = document.getElementById("overlay_certGeneration").style.height + "px"
     document.getElementById("overlay_certGeneration_explaination").style.display = "block"
     document.getElementById("overlay_certGeneration_button_generate").style.display = "block"
-    
+
     document.getElementById("overlay_certGeneration_explaination").style.opacity = 0
     document.getElementById("overlay_certGeneration_button_generate").style.opacity = 0
     document.getElementById("overlay_certGeneration_explaination").style.visibility = "hidden"
     document.getElementById("overlay_certGeneration_button_generate").style.visibility = "hidden"
-    
+
     document.getElementById("list_subjects").style += "; height: calc(" + window.innerHeight + "px - 380px)";
     document.getElementById("pupilTableWrapper").style += "; height: calc(" + window.innerHeight + "px - 380px)"
-    
+
     document.getElementById("overlay_background").style.height = window.innerHeight + "px"
     document.getElementById("overlay_background").style.width = window.innerWidth + "px"
-    
+
     document.getElementById("overlay_infocanvas").style.width = 1 * document.getElementById("overlay_infocanvas").offsetWidth + "px"
     document.getElementById("overlay_infocanvas").style.top = 0.5 * window.innerHeight - 0.5 * document.getElementById("overlay_infocanvas").offsetHeight + "px"
     document.getElementById("overlay_infocanvas").style.left = 0.5 * window.innerWidth - 0.5 * document.getElementById("overlay_infocanvas").style.width.match(/[0-9]*/) + "px"
