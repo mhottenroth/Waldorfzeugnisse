@@ -1115,8 +1115,8 @@
 
           if (lines[l].match(",")){
             // Branch for the new pupil lists.
-            first = lines[l].replace(/^[^,]*,/, "")
-            last = lines[l].replace(/,.*/, "")
+            first = lines[l].replace(/^[^,]*, */, "").replace(/ *$/, "");
+            last = lines[l].replace(/ *,.*/, "").replace(/^ */, "");
           } else {
             // Branch for legacy lists (newline separated names).
             last = lines[l].match(/[^ ]*$/)[0];
