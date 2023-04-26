@@ -830,7 +830,7 @@
 
             for (i = 0; i < SESSIONS_imported.length; i++){
               // Get a list of new pupils.
-              var re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "[^"]*";SESSION\\[[0-9]+\\]\.lastName = "[^"]*"', 'g')
+              var re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "[^"]*";\nSESSION\\[[0-9]+\\]\.lastName = "[^"]*"', 'g')
               var finds = SESSIONS_imported[i].match(re)
               for (j = 0; j < finds.length; j++){
                 var fn = finds[j].match(/(?<=firstName = ")[^"]*/)
@@ -887,7 +887,7 @@
 
       for (s = 0; s < SESSIONS_imported.length; s++){
         // Add pupils who haven’t been in the session before.
-        var re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "[^"]*";SESSION\\[[0-9]+\\]\.lastName = "[^"]*"', 'g')
+        var re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "[^"]*";\nSESSION\\[[0-9]+\\]\.lastName = "[^"]*"', 'g')
         var finds = SESSIONS_imported[s].match(re)
         for (i = 0; i < finds.length; i++){
           var fn = finds[i].match(/(?<=firstName = ")[^"]*/)[0]
