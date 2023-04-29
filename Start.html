@@ -408,7 +408,7 @@
 
     const OS = window.navigator['platform']
 
-    if (OS.match("Windows")){
+    if (OS.match("Win")){
       document.getElementById("scriptType").innerText = "Batchdatei (*.bat)"
     } else {
       document.getElementById("scriptType").innerText = "Shellskriptdatei (*.sh)"
@@ -2128,7 +2128,7 @@
       console.log(scriptContent_Unix)
       console.log(scriptContent_Win)
 
-      if (OS.match("Windows")){
+      if (OS.match("Win")){
         document.getElementById("saveCertsGenerationFile_prompt").href = 'data:text/plain;charset=utf-8,' + scriptContent_Win
         document.getElementById("saveCertsGenerationFile_prompt").download = sessionFileName.replace(/.txt$/, "") + ", Zeugnisse.bat"
       } else {
