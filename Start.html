@@ -1596,7 +1596,7 @@
         }
       }
 
-      if (s.name.match("Eurythmie")){
+      if (s.name.match("Sonderseite: Eurythmie")){
         document.getElementById("eurythmieabschlussPage").style.display = "block"
         document.getElementById("eurythmieabschlussPage").style.opacity = 1
         console.log("Eurythmie aktiv!")
@@ -1641,7 +1641,7 @@
         
         document.getElementById("textarea_finalEurythmy_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
       }
-      else if (s.name.match("Jahresarbeit")){
+      else if (s.name.match("Sonderseite: Jahresarbeit")){
         document.getElementById("jahresarbeitPage").style.display = "block"
         document.getElementById("jahresarbeitPage").style.opacity = 1
         
@@ -1650,7 +1650,7 @@
         document.getElementById("input_jahresarbeit_topic").value = SESSION[p.index].subjects[s.index].topic || ""
         document.getElementById("textarea_jahresarbeit_evaluation").value = SESSION[p.index].subjects[s.index].evaluation || ""
       }
-      else if (s.name.match("Klassenspiel")){
+      else if (s.name.match("Sonderseite: Klassenspiel")){
         document.getElementById("klassenspielPage").style.display = "block"
         document.getElementById("klassenspielPage").style.opacity = 1
         
