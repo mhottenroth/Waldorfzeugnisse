@@ -113,6 +113,8 @@
 \rhead[\CertHeaderLogo]{\certHeaderLogo}
 \cfoot[]{}
 
+\renewcommand{\headrulewidth}{0.4pt}
+
 
 % ------------------------------- %
 % im Dokument verwendete Vorlagen %
@@ -123,8 +125,9 @@
 
 
 % Format für Zeugnistexte
+\newbox\certContent
 \newcommand{\certText}[4]{%
-  \begin{minipage}[t]{\textwidth}
+  \setbox\certContent = \vbox{
     \ifthenelse{%
       \equal{#1}{}%
     }%
@@ -153,12 +156,19 @@
       %
     }
     
-    \ifthenelse{\equal{#4}{}}{}{\hspace{\fill}\emph{#4}}
-  
+    \ifthenelse{\equal{#4}{}}{}{\hspace{\fill}\emph{#4}}%  
     \hfil\rule{\textwidth}{0.4pt}\hfil%
-  \end{minipage}
-
-  \renewcommand{\headrulewidth}{0.4pt}
+    \vskip\baselineskip%
+    \typeout{\the\pagetotal}%
+  }
+  %\ifdim\thisPageTakenSpace>0pt\end{minipage}\fi
+  \ifdim\pagetotal>0pt
+    \ifdim\dimexpr\pagegoal-\pagetotal\relax<\ht\certContent
+      \newpage%
+    \fi%
+  \fi%
+  \unvbox\certContent%
+  \par%
 }
 
 

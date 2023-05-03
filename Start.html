@@ -653,19 +653,19 @@
 
 
     function updateSession_class(e){
-      SESSION.class = e.value
+      SESSION.class = e.value.replace(/^ */, '').replace(/ *$/, '')
     }
 
 
     function updateSession_firstName(e){
       var index = e.parentNode.parentNode.cells[2].children[0].innerText
-      SESSION[index - 1].firstName = e.value.replace(/ *$/, '').replace(/  */, '')
+      SESSION[index - 1].firstName = e.value.replace(/^ */, '').replace(/ *$/, '').replace(/  */, ' ')
     }
 
 
     function updateSession_lastName(e){
       var index = e.parentNode.parentNode.cells[2].children[0].innerText
-      SESSION[index - 1].lastName = e.value.replace(/ *$/, '').replace(/  */, '')
+      SESSION[index - 1].lastName = e.value.replace(/^ */, '').replace(/ *$/, '').replace(/  */, ' ')
     }
 
 
@@ -675,7 +675,7 @@
       var value = list.options[index].innerText
 
       for (var p = 0; p < SESSION.length; p++){
-        SESSION[p].subjects[index].name = value.replace(/ *$/, '').replace(/  */, '')
+        SESSION[p].subjects[index].name = value.replace(/^ */, '').replace(/ *$/, '').replace(/  */, ' ')
       }
     }
 

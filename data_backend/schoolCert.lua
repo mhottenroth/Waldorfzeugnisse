@@ -133,11 +133,13 @@ for i = 0, #SESSION do
       if s.name:match("^Sonderseite: ") then
         if s.name:match("Eurythmieabschluss") then
           local string_works = ""
-          for w = 0, #s.works do
-            if s.works[w].author and s.works[w].work then
-              string_works = string_works..s.works[w].author.." & "..s.works[w].work.." \\\\"
+          if s.works then -- Check this to prevent errors when a subject for eurythmy has been created but no information has been entered.
+            for w = 0, #s.works do
+              if s.works[w].author and s.works[w].work then
+                string_works = string_works..s.works[w].author.." & "..s.works[w].work.." \\\\"
+              end
             end
-          end  
+          end
           if string_works ~= "" and s.evaluation then
             string_works = string_works:gsub("%%", "\\%%")
             s.evaluation = s.evaluation:gsub("%%", "\\%%"):gsub("\n\n+", "\\par ")
