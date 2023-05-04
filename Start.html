@@ -900,6 +900,7 @@
         // Add subject info from the imported session.
         re = new RegExp('SESSION\\[0\\]\.subjects\\[[0-9]+\\].name = "[^"]*"', 'g')
         finds = SESSIONS_imported[s].match(re)
+        console.log("FINDS:", finds)
         for (i = 0; i < finds.length; i++){
           var name_subject = finds[i].match(/(?<=name = ")[^"]*/)[0]
           // Add the subject to the session if not already present.
@@ -913,7 +914,7 @@
 
             //console.log("Suche nach " + pFirstName + " " + pLastName + " in der Sitzung.")
 
-            re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "' + pFirstName + '";SESSION\\[[0-9]+\\]\.lastName = "' + pLastName + '"')
+            re = new RegExp('SESSION\\[[0-9]+\\]\.firstName = "' + pFirstName + '";\nSESSION\\[[0-9]+\\]\.lastName = "' + pLastName + '"')
             var index_pupil_imported = SESSIONS_imported[s].match(re)
 
             // If the pupil has an index in the imported session (Religion might be an example for imported subjects which don’t contain all pupils), …
