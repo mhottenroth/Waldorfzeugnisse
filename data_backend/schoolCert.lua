@@ -126,6 +126,8 @@ for i = 0, #SESSION do
 
     code_TeX = code_TeX:gsub("\\begin{document}.*", "\\begin{document}")
 
+    isFirstRegularSubject = true
+
     for j = 0, #SESSION[i].subjects do
 
       local s = SESSION[i].subjects[j]
@@ -163,6 +165,10 @@ for i = 0, #SESSION do
         if s.name and (s.evaluation or s.contents) then
           s.evaluation = (s.evaluation and s.evaluation:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
           s.contents = (s.contents and s.contents:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
+          if isFirstRegularSubject then
+            code_TeX = code_TeX.."\n  \\raisebox{\\baselineskip}{\\hfil\\rule{\\textwidth}{0.4pt}\\hfil}%"
+            isFirstRegularSubject = false
+          end
           if j > 0 and SESSION[i].subjects[j-1].name == s.name then
             code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
           else

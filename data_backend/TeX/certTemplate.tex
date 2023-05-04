@@ -44,8 +44,10 @@
 ]
 
 % Absatzformat
-\setlength\parskip{1.25\baselineskip}
 \setlength\parindent{0pt}
+
+% Absatzsprung ohne Gummi.
+\parskip0.5\baselineskip plus 0pt minus 0pt
 
 % Worttrennung vermeiden
 \tolerance=1
@@ -60,7 +62,7 @@
 % Schusterjungen (mindestens x Zeilen eines Absatzes auf vorangegangener Seite)
 \clubpenalties 3 10000 10000 1000
 
-%Hurenkinder (mindestens x Zeilen eines Absatzes auf nächster Seite)
+% Hurenkinder (mindestens x Zeilen eines Absatzes auf nächster Seite)
 \widowpenalties 3 10000 10000 1000
 
 % Datumsformat
@@ -71,12 +73,11 @@
 % halbtransparenter Schriftzug »Schulstempel«
 \usepackage[dvipdf]{color}
 
-
 % Papierformat
 \usepackage{fancyhdr}
 \usepackage[includehead,includefoot]{geometry}
 \setlength{\headheight}{25mm+4\baselineskip}
-\setlength{\headsep}{1.0\baselineskip} % Abstand zwischen Kopfzeilenlinie und Oberkante der ersten Zeile des Fließtexts
+\setlength{\headsep}{0pt} % Abstand zwischen Kopfzeilenlinie und Oberkante der ersten Zeile des Fließtexts
 \setlength{\footskip}{10mm}
 \geometry{a4paper,left=30mm,right=25mm,top=0mm,bottom=10mm}
 \fancyhfoffset[HL,HR,FL,FR]{0cm}
@@ -113,7 +114,7 @@
 \rhead[\CertHeaderLogo]{\certHeaderLogo}
 \cfoot[]{}
 
-\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0pt}
 
 
 % ------------------------------- %
@@ -122,7 +123,6 @@
 
 % Zeugnistexte
 \usepackage{ifthen}
-
 
 % Format für Zeugnistexte
 \newbox\certContent
@@ -162,8 +162,9 @@
   }
   %\ifdim\thisPageTakenSpace>0pt\end{minipage}\fi
   \ifdim\pagetotal>0pt
-    \ifdim\dimexpr\pagegoal-\pagetotal\relax<\ht\certContent
+    \ifdim\dimexpr\pagegoal-\pagetotal+\baselineskip\relax<\ht\certContent
       \newpage%
+      \raisebox{\baselineskip}{\hfil\rule{\textwidth}{0.4pt}\hfil}%
     \fi%
   \fi%
   \unvbox\certContent%
@@ -193,8 +194,6 @@
     PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
                                                      & Unterschrift der Klassenspielleitung
   \end{tabular}
-
-  \renewcommand{\headrulewidth}{0pt}
 }
 
 
@@ -227,8 +226,6 @@
     PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
                                                      & Unterschrift der Eurythmieleitung
   \end{tabular}
-
-  \renewcommand{\headrulewidth}{0pt}
 }
 
 
@@ -253,19 +250,18 @@
   \par 
   \nopagebreak
   \bgroup
-  \vspace{5\baselineskip minus 3\baselineskip}
-  \setlength{\tabcolsep}{10mm}
-
-  \begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
-    \rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
-    Erstgutachter & Zweitgutachter
-  \end{tabular}
-  \nopagebreak
-  \vspace{2\baselineskip minus 0.5\baselineskip}
-
-  PLACE, den \certDateFormat\displaydate{certDate}
+    \vspace{5\baselineskip minus 3\baselineskip}
+    \setlength{\tabcolsep}{10mm}
+  
+    \begin{tabular}{@{}C{\linewidth/2-10mm}C{\linewidth/2-10mm}}
+      \rule{\linewidth}{0.4pt} & \rule{\linewidth}{0.4pt}\\
+      Erstgutachter & Zweitgutachter
+    \end{tabular}
+    \nopagebreak
+    \vspace{2\baselineskip minus 0.5\baselineskip}
+  
+    PLACE, den \certDateFormat\displaydate{certDate}
   \egroup
-  \renewcommand{\headrulewidth}{0pt}
 }
 
 
@@ -302,14 +298,13 @@
     MARKS-FORMAT%\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0
   \end{tabular}
   }
-  
-  \renewcommand{\headrulewidth}{0.0pt}
 }
 
 
 % letzte Seite
 \newcommand{\finalPage}[3]{%
   \newpage
+  \raisebox{\baselineskip}{\hfil\rule{\textwidth}{0.4pt}\hfil}%
   %
   \certText{Bemerkungen:}{#1}{}{}
 
@@ -333,8 +328,6 @@
   \vspace{2\baselineskip}
 
   PLACE, den \certDateFormat\displaydate{certDate}
-
-  \renewcommand{\headrulewidth}{0.4pt}
 }
 
 
@@ -344,7 +337,8 @@
   %\finalPupilsPlay{}{}
   %\finalEurythmy{}{}
   %\finalThesis{}{}{}{}
-  %\newpage  
+  %\newpage
+  \raisebox{\baselineskip}{\hfil\rule{\textwidth}{0.4pt}\hfil}%
   %\certText{}{}{}{}
   %\finalMarks{}
   %\finalPage{}{}{}
