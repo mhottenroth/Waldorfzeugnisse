@@ -47,30 +47,34 @@ loadstring(s)()
 
 
 -- gather informationen about OS and its architecture
-local handle = io.popen("uname -ms")
-OS, arch = handle:read("*all"):match("(.*) (.*)")
-handle:close()
+if not os.getenv("HOME") then
+  OS = "Windows"
+  binVersion = "win32/xelatex"
+else
+  local handle = io.popen("uname -ms")
+  OS, arch = handle:read("*all"):match("(.*) (.*)")
+  handle:close()
+  if OS == "Linux" then
+    if arch:match("64") then
+      binVersion = "x86_64-linux/xelatex"
+    else
+      binVersion = "i386-linux/xelatex"
+    end
+  else
+    binVersion = "x86_64-darwin/xelatex"
+  end
+end
 
 -- Set the output directory. Check if it exists later.
 outputDir = baseDir.."/Zeugnisse/"..sessionFileName
 
--- set binary according to OS and architecture
-if OS and OS == "Linux" then
-	if arch:match("64") then
-		binVersion = "x86_64-linux/xelatex"
-	else
-		binVersion = "i386-linux/xelatex"
-	end
-elseif OS == "Darwin" then
-	binVersion = "x86_64-darwin/xelatex"
-else
-  OS = "Windows"
-  binVersion = "win32/xelatex"
-  --outputDir = outputDir:gsub(" ", "_")
-end
 
 if not lfs.attributes(outputDir, "mode") then
-  os.execute("mkdir -p \""..outputDir.."\"")
+  if OS == "Windows" then
+    os.execute("mkdir \""..outputDir.."\"")
+  else
+    os.execute("mkdir -p \""..outputDir.."\"")
+  end
 else
   if lfs.attributes(outputDir, "mode") == "file" then
     print("Es existiert eine Datei mit dem Namen des Zielordners. Abgebrochen.")
@@ -105,6 +109,18 @@ for i = 0, #SESSION do
     local file_TeXTemplate = io.open(baseDir.."/data_backend/TeX/certTemplate.tex")
     local code_TeX = file_TeXTemplate:read("*all")
     file_TeXTemplate:close()
+
+    if not SESSION.class then
+      print("In der Sitzung wurde keine Klasse angegeben. Abbruch.")
+      io.read()
+      return
+    end
+
+    if not SESSION.place then
+      print("In der Sitzung wurde kein Ausstellungsort des Zeugnisses angegeben. Abbruch.")
+      io.read()
+      return
+    end
 
     -- Set certificate data in the TeX string.
     code_TeX = code_TeX:gsub("PUPIL%-NAME", p.firstName.." "..p.lastName)
