@@ -144,19 +144,18 @@
     }%
     {}%
     {%
-      #2%
-      %
+      \nopagebreak\par
+      #2
+      \nopagebreak
       \vspace{0.5\baselineskip}
-      %
     }
-
-    \ifthenelse{\equal{#3}{}}{}{\emph{#3}%
-      %
+    \ifthenelse{\equal{#3}{}}{}{%
+      \nopagebreak\par
+      \emph{#3}%
+      \nopagebreak
       \vspace{0.5\baselineskip}
-      %
     }
-    
-    \ifthenelse{\equal{#4}{}}{}{\hspace{\fill}\emph{#4}}%  
+    \ifthenelse{\equal{#4}{}}{}{\par\hspace{\fill}\emph{#4}}%  
     \hfil\rule{\textwidth}{0.4pt}\hfil%
     \vskip\baselineskip%
   }
