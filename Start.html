@@ -2,10 +2,10 @@
 <html lang="de">
 
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="data_gui/main.css" type="text/css" media="screen">
     <title>Waldorfzeugnisprogramm</title>
-    <link rel="shortcut icon" type="image/svg" href="data_gui/images/favicon.svg"/>
+    <link rel="shortcut icon" type="image/svg" href="data_gui/images/favicon.svg">
   </head>
 
   <body>
@@ -54,7 +54,7 @@
         <table style="width: 100%">
           <tr>
             <td><input type="text" id="input_path_sessionFile" readonly></td>
-            <td style="width: 0px"><button style="vertical-align: bottom" onclick='document.getElementById("selectSessionFile").click()' type="button"><img src="./data_gui/images/folder.svg"></button></td>
+            <td style="width: 0px"><button style="vertical-align: bottom" onclick='document.getElementById("selectSessionFile").click()' type="button"><img alt="Choose file" src="./data_gui/images/folder.svg"></button></td>
             <td><input type="file" id="selectSessionFile" style="display: none" onchange="fillSessionFileInput(this)"></td>
           </tr>
         </table>
@@ -96,7 +96,7 @@
 
     <div id="place" style="position: absolute; color: white; font-weight: bold">LEIPZIG</div>
 
-    <table id="header">
+    <table id="pageHeader">
       <tbody>
         <tr>
           <td>
@@ -105,7 +105,7 @@
                 <!-- Logo and credits. -->
                 <td id="programInfo">
                   <div id="logoAndCredits">
-                    <img src="data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
+                    <img alt="Logo Waldorfschule" src="data_gui/images/LogoWaldorfschule_noCity.svg" id="logo">
                     <div id="nameAndCredits"><b id="programName" style="font-size: 18px">Zeugnisprogramm</b> <br> <div id="author">Marcus Hottenroth (2021)</div></div>
                   </div>
                 </td>
@@ -135,7 +135,7 @@
           </td>
           <td id="space_beforeSession"></td>
           <td id="sessionOptions" style="vertical-align: top; text-align: right; font-size: 16px; font-weight: normal">
-            <button type="button" class="button_session" onclick="saveSession()"><img src="./data_gui/images/save.svg" style="vertical-align: bottom"> Sitzung speichern unter …</button>    <button type="button" class="button_session" onclick="document.getElementById('getSessionFileToLoad').click()"><img src="./data_gui/images/load.svg" style="vertical-align: bottom"> Sitzung laden …</button>  <button type="button" class="button_session" onclick="overlay_certGeneration_open()"><img src="./data_gui/images/generate.svg" style="vertical-align: bottom"> Zeugnisse erstellen …</button>  <button type="button" class="button_session" onclick="document.getElementById('getSessionFilesToMerge').click()"><img src="./data_gui/images/merge.svg" style="vertical-align: bottom"> Sitzungsdaten zusammenführen …</button>
+            <button type="button" class="button_session" onclick="saveSession()"><img alt="Save" src="./data_gui/images/save.svg" style="vertical-align: bottom"> Sitzung speichern unter …</button>    <button type="button" class="button_session" onclick="document.getElementById('getSessionFileToLoad').click()"><img alt="Load" src="./data_gui/images/load.svg" style="vertical-align: bottom"> Sitzung laden …</button>  <button type="button" class="button_session" onclick="overlay_certGeneration_open()"><img alt="Generate" src="./data_gui/images/generate.svg" style="vertical-align: bottom"> Zeugnisse erstellen …</button>  <button type="button" class="button_session" onclick="document.getElementById('getSessionFilesToMerge').click()"><img alt="Merge" src="./data_gui/images/merge.svg" style="vertical-align: bottom"> Sitzungsdaten zusammenführen …</button>
             <!-- Link which gets »clicked« to save a session. -->
             <a id="saveSession_prompt" href="data:text/plain;charset=utf-8," download="Sitzung.txt"></a>
             <!-- File chooser. -->
@@ -160,13 +160,11 @@
                 <tr>
                   <td><span>Hinzufügen:</span></td>
                   <td><button type="button" id="addPupil" style="width: 100%" onclick="addPupil()">Einen Schüler hinzufügen</button></td>
-                  <td><button id="importPupilsList" onclick="document.getElementById('getPupilsListFile').click()">Schülerliste importieren …</button></td>
-                  <input type='file' id="getPupilsListFile" style="display:none" onchange="importPupils(this)">
+                  <td><button id="importPupilsList" onclick="document.getElementById('getPupilsListFile').click()">Schülerliste importieren …</button><input type='file' id="getPupilsListFile" style="display:none" onchange="importPupils(this)"></td>
                 </tr>
                 <tr id="saveRow_pupils">
                   <td>Speichern:</td>
-                  <td><button type="button" onclick="exportPupilsList()" id="button_exportPupilsList">Schülerliste exportieren …</button></td>
-                  <a id="exportPupilsList_prompt" href="data:application/json;charset=utf-8," download="Schülerliste.txt"></a>
+                  <td><a id="exportPupilsList_prompt" href="data:application/json;charset=utf-8," download="Schülerliste.txt"></a><button type="button" onclick="exportPupilsList()" id="button_exportPupilsList">Schülerliste exportieren …</button></td>
                 </tr>
               </tbody>
             </table>
@@ -182,10 +180,10 @@
             <div id="pupilTableWrapper">
               <table id="t01" style="border-radius: 10px">
                 <tbody>
-                  <tr id="header">
+                  <tr id="none">
                     <th></th>
                     <th title="Zu druckende Schülerzeugnisse"><span>Drucken?</span></th>
-                    <th align=right><span>#</span></th>
+                    <th style="text-align: right"><span>#</span></th>
                     <th><span data-order="none" onclick="sortPupilsTableByFirstName(this)" id="pupilsTable_firstName" title="Klicken, um auf-/absteigend zu sortieren">Vorname •</span></th>
                     <th><span data-order="none" onclick="sortPupilsTableByLastName(this)" id="pupilsTable_lastName" title="Klicken, um auf-/absteigend zu sortieren">Nachname •</span></th>
                     <th><span>Aktiv</span></th>
@@ -211,8 +209,7 @@
                 <tr>
                   <td><span>Hinzufügen:</span></td>
                   <td><button type="button" style="width: 100%" id="button_addSubject" onclick="addSubject()">Ein Fach hinzufügen</button></td>
-                  <td><button id="importSubjectsList" onclick="document.getElementById('getSubjectsListFile').click()" style="width: 100%">Fächerliste importieren …</button></td>
-                  <input type='file' id="getSubjectsListFile" style="display:none" onchange="importSubjects(this)">
+                  <td><button id="importSubjectsList" onclick="document.getElementById('getSubjectsListFile').click()" style="width: 100%">Fächerliste importieren …</button><input type='file' id="getSubjectsListFile" style="display:none" onchange="importSubjects(this)"></td>
                 </tr>
                 <tr>
                   <td></td>
@@ -232,8 +229,7 @@
                 </tr>
                 <tr id="saveRow_subjects">
                   <td>Speichern:</td>
-                  <td><button type="button" onclick='exportSubjectsList()' id="button_exportSubjectsList">Fächerliste exportieren …</button></td>
-                  <a id="exportSubjectsList_prompt" href="data:text/plain;charset=utf-8,your code here" download="Fächerliste.txt"></a>
+                  <td><button type="button" onclick='exportSubjectsList()' id="button_exportSubjectsList">Fächerliste exportieren …</button><a id="exportSubjectsList_prompt" href="data:text/plain;charset=utf-8,YourCodeHere" download="Fächerliste.txt"></a></td>
                 </tr>
               </tbody>
             </table>
@@ -251,7 +247,7 @@
                 </tr>
               </tbody>
             </table>
-            <select size=2 id="list_subjects" style="height: 200px" onclick="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()" onchange="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()"onkeydown="deleteSubjectFromList_key(this)">
+            <select size=2 id="list_subjects" style="height: 200px" onclick="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()" onchange="updateSubjectNameInput(this); updateSubjectPanel(this); updateFinalRemarksPanel()" onkeydown="deleteSubjectFromList_key(this)">
             </select>
           </td>
 
