@@ -176,23 +176,21 @@
   \newpage
   %
   {\Huge{Abschluss im Fach Klassenspiel}}
-
-  \vspace{2\baselineskip}
-
-  {\itshape #1}
-
   \par
-
+  \vspace{2\baselineskip}
+  {\itshape #1}
+  \par
   {\itshape #2}
-
-  \vspace{5\baselineskip}
-
-  \setlength{\tabcolsep}{0pt}
-
-  \begin{tabular}{@{}p{75mm}c}
-    PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
-                                                     & Unterschrift der Klassenspielleitung
-  \end{tabular}
+  \par
+  \nopagebreak
+  \bgroup
+    \vspace{5\baselineskip}
+    \setlength{\tabcolsep}{0pt}\par
+    \begin{tabular}{@{}p{75mm}c}
+      PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
+                                                      & Unterschrift der Klassenspielleitung
+    \end{tabular}
+  \egroup
 }
 
 

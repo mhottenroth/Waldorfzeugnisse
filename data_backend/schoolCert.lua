@@ -179,8 +179,8 @@ for i = 0, #SESSION do
         end
       else
         if s.name and (s.evaluation or s.contents) then
-          s.evaluation = (s.evaluation and s.evaluation:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
-          s.contents = (s.contents and s.contents:gsub("\n\n*", " "):gsub("%%", "\\%%")) or ""
+          s.evaluation = (s.evaluation and s.evaluation:gsub("\n\n*", " "):gsub("%%", "\\%%"):gsub("&", "\\&")) or ""
+          s.contents = (s.contents and s.contents:gsub("\n\n*", " "):gsub("%%", "\\%%"):gsub("&", "\\&")) or ""
           if isFirstRegularSubject then
             code_TeX = code_TeX.."\n  \\raisebox{\\baselineskip}{\\hfil\\rule{\\textwidth}{0.4pt}\\hfil}%"
             isFirstRegularSubject = false
