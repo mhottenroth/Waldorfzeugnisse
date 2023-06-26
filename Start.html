@@ -1728,7 +1728,6 @@
     function checkTypography(e){
       // Change the text while typing.
       var text = e.value
-      console.log(text)
       if (text.match(/„[^“]*$/) && text.match(/"$/)){
         text = text.replace(/"$/, '“')
       }
@@ -1742,8 +1741,6 @@
         text = text.replace(/'$/, '’')
       }
 
-      console.log(text)
-
       // Changes pasted text.
       // Second condition prevents potential infinity loop.
       var i = 0
@@ -1756,15 +1753,11 @@
         i++
       }
 
-      console.log(text)
-
       while (text.match(/ - /g)){
         text = text.replace(' - ', " – ")
       }
 
       text = text.replace(/\n$/, '')
-
-      console.log(text)
 
       e.value = text
     }
