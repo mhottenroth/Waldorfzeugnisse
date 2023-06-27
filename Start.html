@@ -979,7 +979,11 @@
             var fn = SESSION[p].firstName
             var ln = SESSION[p].lastName
             addPupil(fn, ln, true)
-            console.log("p: " + p)
+            console.log(SESSION[p].print)
+            if (SESSION[p].print == "false"){
+              var rows = document.getElementsByClassName("pupilRow");
+              rows[rows.length - 1].children[1].children[0].checked = false
+            }
           }
           document.getElementsByName('radio_pupil')[0].checked = "true"
           updateFinalRemarksPanel()
