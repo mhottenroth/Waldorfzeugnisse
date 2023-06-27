@@ -168,7 +168,7 @@ for i = 0, #SESSION do
           if s.topic and s.firstReader and s.secondReader and s.evaluation then
             -- Delete trailing newlines, reduce more than one blankline to one, and finally turn single linebreaks (\n) into paragraph limits.
             s.topic = s.topic:gsub("%%", "\\%%")
-            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n\n+", "\\par "):gsub("([^\n]) *\n *([^\n])", "%1\\par %2"):gsub("%%", "\\%%")
+            s.evaluation = s.evaluation:gsub("\n+$", ""):gsub("\n\n+", "\\par "):gsub("([^\n]) *\n *([^\n])", "%1\\par %2"):gsub("%%", "\\%%"):gsub("&", "\\&")
             code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation.."}"
           end
         end
@@ -186,9 +186,9 @@ for i = 0, #SESSION do
             isFirstRegularSubject = false
           end
           if j > 0 and SESSION[i].subjects[j-1].name == s.name then
-            code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
+            code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher:gsub("&", "\\&") or "").."}"
           else
-            code_TeX = code_TeX.."\n  \\certText{"..s.name.."}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
+            code_TeX = code_TeX.."\n  \\certText{"..s.name.."}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher:gsub("&", "\\&") or "").."}"
           end
         end
       end

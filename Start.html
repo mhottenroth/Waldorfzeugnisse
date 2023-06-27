@@ -398,6 +398,15 @@
   </body>
 
   <script>
+    /**********************
+    * Debugging funtions. *
+    **********************/
+    document.addEventListener("keypress", function(e){
+      if (e.key == "#"){
+        console.log(SESSION)
+      }
+    });
+
     /********************************************************
     * Initiate the session and set some element attributes. *
     ********************************************************/
@@ -1092,12 +1101,12 @@
       };
       var reader = new FileReader();
       reader.onload = (e) => {
-        const file = e.target.result;
+        const file = e.target.result.replace(/\r/, "");
         var lines = {}
         if (file.match(";")){
           lines = file.split(";")
         } else {
-          lines = file.split(/\r\n|\n/);
+          lines = file.split(/\n/);
         }
         while (document.getElementById('t01').rows.length != 2){
           document.getElementById('t01').deleteRow(2);
