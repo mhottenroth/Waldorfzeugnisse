@@ -574,7 +574,7 @@
         "lastName": lastName || "",
         "daysAbsent": "",
         "daysAbsent_unexplained": "",
-        "panel_finalRemarks": "",
+        "finalRemarks": "",
         "print": true,
         "subjects": []
       }
@@ -729,7 +729,7 @@
 
 
     function updateSession_pupilFinalRemarks(e){
-      SESSION[getSelectedPupil().index].panel_finalRemarks = e.value
+      SESSION[getSelectedPupil().index].finalRemarks = e.value
     }
 
 
@@ -1780,7 +1780,7 @@
       document.getElementById("input_daysAbsent").value = SESSION[i].daysAbsent || ""
       document.getElementById("input_daysAbsent_unexplained").value = SESSION[i].daysAbsent_unexplained || ""
       document.getElementById("heading_panel_finalRemarks").innerText = "Bemerkungen für " + name + ":"
-      document.getElementById("textarea_panel_finalRemarks").value = SESSION[i].panel_finalRemarks || ""
+      document.getElementById("textarea_panel_finalRemarks").value = SESSION[i].finalRemarks || ""
     }
 
 
