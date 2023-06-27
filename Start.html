@@ -1012,9 +1012,6 @@
           document.getElementById("input_class").value = SESSION.class || ""
           document.getElementById("label_year").innerText = SESSION.year || ""
           document.getElementById("input_date").value = SESSION.date || ""
-
-
-
         }
 
         reader.readAsText(file)
@@ -1784,7 +1781,11 @@
       document.getElementById("input_daysAbsent").value = SESSION[i].daysAbsent || ""
       document.getElementById("input_daysAbsent_unexplained").value = SESSION[i].daysAbsent_unexplained || ""
       document.getElementById("heading_panel_finalRemarks").innerText = "Bemerkungen für " + name + ":"
+      if (SESSION[i].panel_finalRemarks){
+        SESSION[i].finalRemarks = SESSION[i].panel_finalRemarks;
+      }
       document.getElementById("textarea_panel_finalRemarks").value = SESSION[i].finalRemarks || ""
+      
     }
 
 
