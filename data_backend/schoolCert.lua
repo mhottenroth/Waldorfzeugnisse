@@ -92,7 +92,7 @@ for i = 0, #SESSION do
   p.firstName = p.firstName:gsub(" *$", "")
   p.lastName = p.lastName:gsub(" *$", "")
 
-  if p.print then
+  if p.print == "true" then
     if OS == "Windows" then
       local handle = io.popen("echo Erstelle Zeugnis für "..p.firstName.." "..p.lastName.." ... | "..baseDir.."/data_backend/iconv/bin/iconv.exe -f UTF-8 -t ISO-8859-1 2>&1")
       local utf8String = handle:read("*all")
