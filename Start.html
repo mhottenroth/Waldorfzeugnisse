@@ -968,7 +968,7 @@
 
         reader.onload = function(e){
           // Renew the SESSION variable.
-          var session_new = e.target.result
+          var session_new = e.target.result.replace(/\r/g, "")
           SESSION = []
           eval(session_new)
 
