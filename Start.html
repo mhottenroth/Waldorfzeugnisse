@@ -827,7 +827,7 @@
 
         reader.onload = function(e){
           // The whole imported session as a string.
-          SESSIONS_imported[SESSIONS_imported.length] = e.target.result;
+          SESSIONS_imported[SESSIONS_imported.length] = e.target.result.replace(/\r/g, "").replace(/\\n\"/g, "\"");
 
           console.log(SESSIONS_imported + ", Länge: " + SESSIONS_imported.length)
 
@@ -968,7 +968,7 @@
 
         reader.onload = function(e){
           // Renew the SESSION variable.
-          var session_new = e.target.result.replace(/\r/g, "")
+          var session_new = e.target.result.replace(/\r/g, "").replace(/\\n\"/g, "\"")
           SESSION = []
           eval(session_new)
 
@@ -1106,7 +1106,7 @@
       };
       var reader = new FileReader();
       reader.onload = (e) => {
-        const file = e.target.result.replace(/\r/g, "");
+        const file = e.target.result.replace(/\r/g, "").replace(/\\n\"/g, "\"");
         var lines = {}
         if (file.match(";")){
           lines = file.split(";")
@@ -1476,7 +1476,7 @@
 
       var reader = new FileReader();
       reader.onload = function(e){
-        const file = e.target.result;
+        const file = e.target.result.replace(/\r/g, "").replace(/\\n\"/g, "\"");
 
         // Only load the file into the program if it’s not larger than 1024 bytes (avoid crashing).
         if (file.length <= 1024){
