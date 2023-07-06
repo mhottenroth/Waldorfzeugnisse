@@ -1,0 +1,858 @@
+:root{
+  --fg-normal: rgba(90,20,20,1);
+  --fg-dimmed: rgba(90,20,20,0.25);
+  --fg-prelight: #370000;
+  --fg-button: #fff;
+  --fg-checkbox: #930;
+  --fg-radio: #930;
+  --bg-main: #FFF5F0;
+  --bg-button: rgba(232,153,102,1);
+  --bg-button-prelight: #F7AC7C;
+  --bg-button-active:  rgba(220,150,110,1);
+  --bg-input: rgba(255,255,255,1);
+  --bg-overlay: #fff5f0;
+  --bg-prelight: rgba(255,210,160,1);
+  --bg-prelight-dimmed: rgba(255,210,160,0.5);
+  --border-normal: rgba(0,0,0,1);
+  --border-active: rgba(252,195,77,1);
+  --border-overlay: #930;
+  --gradient: linear-gradient(45deg, rgba(237,123,130,1) 0%, rgba(232,153,102,1) 35%, rgba(252,195,77,1) 100%);
+  --panels: #FAF5F5;
+  --session-buttons-filter: invert(15%) sepia(42%) saturate(5570%) hue-rotate(38deg) brightness(95%) contrast(106%);
+  --shadow: var(--fg-prelight);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --fg-normal: #ddf;
+    --fg-dimmed: rgba(240,245,255,0.25);
+    --fg-prelight: #fff;
+    --fg-button: #fff;
+    --fg-checkbox: #eef;
+    --fg-radio: #ccf;
+    --bg-main: #191E3C;
+    --bg-button: #3C466E;
+    --bg-button-prelight: #558;
+    --bg-button-active:  rgba(220,150,110,1);
+    --bg-input: #191E3C;
+    --bg-overlay: #1A1A2F;
+    --bg-prelight: #6677AA;
+    --bg-prelight-dimmed: rgba(255,210,160,0.5);
+    --border-normal: #46466E;
+    --border-active: #8ca0dc;
+    --border-overlay: var(--bg-prelight);
+    --gradient: linear-gradient(45deg, rgba(0,18,54,1) 0%, rgba(40,40,60,1) 35%, rgba(132,125,180,1) 100%);
+    --panels: #2A3354;
+    --session-buttons-filter: invert(84%) sepia(26%) saturate(797%) hue-rotate(193deg) brightness(102%) contrast(108%);
+    --shadow: black;
+  }  
+}
+
+
+/*****************
+* Global styles. *
+*****************/
+
+@font-face {
+  font-family: Titillium;
+  src: url("./fonts/TitilliumWeb-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Titillium;
+  font-weight: bold;
+  src: url("./fonts/TitilliumWeb-Bold.ttf") format("truetype");
+}
+
+*{
+  color: var(--fg-normal);
+  font-size: 12px;
+  font-family: Titillium;
+}
+
+body{
+  background-color: var(--bg-main)
+}
+
+textarea{
+  color: var(--fg-normal);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-normal);
+  border-radius: 3px;
+  width: 100%;
+  resize: none;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+  -moz-box-sizing: border-box; /* FF1+ */
+  box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+textarea:focus{
+  border: 1px solid var(--border-active);
+  outline: 1px solid var(--border-active)
+}
+
+select{
+  color: var(--fg-normal);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-normal);
+  border-radius: 3px;
+}
+
+input[type="text"]{
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--fg-normal);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-normal);
+  border-radius: 3px;
+}
+
+input[type="text"]:focus,
+input[type="text"]:active{
+  border: 1px solid var(--border-active);
+  outline: 1px solid var(--border-active)
+}
+
+table, td, tr, th{
+  padding: 0px;
+}
+
+th{
+  border-bottom: 1px solid black;
+  font-weight: normal;
+  font-size: small;
+}
+
+hr{
+  background: var(--gradient);
+  height: 1px;
+  border: none
+}
+
+button{
+  background-color: var(--bg-button);
+  border: 1px solid black;
+  border-radius: 4px;
+  color: var(--fg-button);
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5em;
+}
+
+button:disabled{
+  opacity: 0.5
+}
+
+button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):not(:disabled):hover{
+  background-color: var(--bg-button-prelight);
+}
+
+button:not(.button_cancel):not(.calendar_dateButton):not(.button_session):hover:active{
+  background-color: var(--bg-button-active);
+}
+
+.button_cancel{
+  background-color: transparent;
+  border: none;
+  color: #C66666;
+  padding: 0px;
+  font-size: 18pt;
+  margin-top: -6px;
+  opacity: 0.5
+}
+
+.button_cancel:hover{
+  background-color: transparent;
+  border: none;
+  opacity: 1
+}
+
+
+/* Custom checkboxes and radio buttons. */
+
+input[type="checkbox"]{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  place-content: center;
+  margin: 0;
+  border: 1px solid var(--border-normal);
+}
+
+input[type="checkbox"]:checked:after{
+  background-color: var(--fg-checkbox);
+  clip-path: polygon(15% 50%, 5% 65%, 50% 100%, 90% 15%, 90% 0%, 40% 70%);
+  transform: scale(1);
+  transform-origin: bottom left;
+  transition: 200ms transform ease-in-out, 200ms background-color linear;
+}
+
+input[type="checkbox"]:after{
+  content: "";
+  clip-path: polygon(15% 50%, 5% 65%, 50% 100%, 90% 15%, 90% 0%, 40% 70%);
+  height: 14px;
+  width: 14px;
+  transform: scale(0);
+  transition: 450ms transform ease-in-out, 150ms background-color linear;
+  transform-origin: bottom left;
+  background-color: var(--bg-entry);
+}
+
+input[type="radio"]{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  place-content: center;
+  border-radius: 50px;
+  margin: 0;
+  border: 1px solid var(--border-normal);
+}
+
+input[type="radio"]:checked:after{
+  background-color: var(--fg-radio);
+  clip-path: circle(50%);
+  transform: scale(0.6);
+  transform-origin: center;
+  transition: 300ms transform ease-in-out, 300ms background-color linear;
+}
+
+input[type="radio"]:after{
+  content: "";
+  height: 14px;
+  width: 14px;
+  transform: scale(0);
+  clip-path: circle(50%);
+  transform-origin: center;
+  transition: 150ms transform ease-in-out, 150ms background-color linear;
+}
+
+
+/**************************************************/
+
+/********************
+* General elements. *
+********************/
+
+.panelHeader{
+  height: 95px;
+}
+
+.panelHeader > tbody > tr{
+  vertical-align: top;
+}
+
+.panelBody_top{
+  height: 70px;
+  width: 100%;
+}
+
+#panel_pupils .panelHeader tr:last-of-type:not(:first-of-type),
+#panel_subjects .panelHeader tr:last-of-type:not(:first-of-type){
+  vertical-align: bottom;
+}
+
+
+/*************************
+* Session import dialog. *
+*************************/
+
+#overlay_background{
+  z-index: 999999;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  background-color: #C8B4AA;
+  opacity: 0;
+  transition: opacity 0.5s;
+  visibility: hidden
+}
+
+#overlay_infocanvas{
+  z-index: 9999999;
+  position: absolute;
+  background-color: white;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  visibility: hidden
+}
+
+#content_infocanvas{
+  padding: 20px
+}
+
+.button_cancel{
+  float: right
+}
+
+#importDialog_heading{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1em
+}
+
+.listOfImportCandidates{
+  margin-bottom: 10px;
+  margin-left: 1.5ch;
+  overflow-y: auto;
+  max-height: 8em
+}
+
+#button_doImport{
+  float: right;
+  margin-bottom: 20px
+}
+
+
+/************
+* Calendar. *
+************/
+
+#overlay_calendar{
+  background-color: var(--bg-overlay);
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px var(--shadow);
+  z-index: 999999;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  visibility: hidden;
+  width: 240px;  
+}
+
+#overlay_calendar > table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#button_closeCalendar{
+  margin-bottom: -18px
+}
+
+.button_calendar_left{
+  float: right
+}
+
+.calendar_timespanKeyword{
+  text-align: center;
+  width: 50%
+}
+
+#calendarSheet{
+  width: 100%
+}
+
+/* Attention! Those elements can’t be found in the html but are generated via Javascript. START */
+
+.calendar_weeknumber,
+.calendar_weekday{
+  width: 3ch;
+  height: 2em;
+  background-color: var(--bg-prelight);
+  text-align: center;
+}
+
+.calendar_dateButton{
+  font-weight: normal;
+  width: 4ch;
+  height: 2em;
+  text-align: center;
+  background-color: transparent;
+  color: var(--fg-normal);
+  border: none;
+  transition: 0ms background-color ease-in-out;
+}
+
+/* END */
+
+.calendar_dateButton:hover{
+  background-color: var(--bg-prelight);
+  transition: 200ms background-color ease-in-out;
+}
+
+#button_calendar_year_previous,
+#button_calendar_month_previous,
+#button_calendar_year_next,
+#button_calendar_month_next{
+  background-color: transparent;
+  color: var(--fg-dimmed);
+  font-weight: normal;
+  border: none;
+  transition: 0ms color ease-in-out;
+}
+
+#button_calendar_year_previous:hover,
+#button_calendar_month_previous:hover,
+#button_calendar_year_next:hover,
+#button_calendar_month_next:hover{
+  color: var(--fg);
+  transition: 300ms color ease-in-out;
+}
+
+
+/***************
+* Header data. *
+***************/
+
+#pageHeader{
+  width: 100%;
+}
+
+#tableHeader{
+  background-color: var(--panels);
+  border: 1px solid black;
+  border-radius: 10px;
+  border-spacing: 5px;
+}
+
+#tableHeader td:nth-of-type(2){
+  vertical-align: top
+}
+
+#programInfo{
+  background: var(--gradient);
+  border-radius: 10px;
+}
+
+#logoAndCredits{
+  display: flex;
+  color: #fff;
+}
+
+#logo{
+  height: 80px;
+  display: inline-block;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+#place{
+  font-size: 22.5px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  position: absolute;
+  top: 73px;
+  margin-left: 104px;
+  color: white;
+}
+
+#nameAndCredits{
+  font-size: 18px;
+  vertical-align:top; 
+  padding-top: 4px;
+  padding-right: 10px;
+}
+
+#programName{
+  font-size: 18px;
+  color: #fff
+}
+
+#author{
+  color: #fff;
+}
+
+#label_year{
+  text-align: right
+}
+
+#class_date_container{
+  padding-left: 20px;
+}
+
+#class_date_container input{
+  text-align: right;
+  width: 15ch;
+}
+
+#sessionOptions{
+  vertical-align: top;
+  text-align: right;
+  font-size: 16px;
+  font-weight: normal
+}
+
+.headerButtonImg{
+  vertical-align: bottom
+}
+
+#getSessionFilesToMerge,
+#getSessionFileToLoad{
+  display: none
+}
+
+#sessionUnderline{
+  background-color: black;
+  background: black
+}
+
+
+/**************************
+* Header session buttons. *
+**************************/
+
+.button_session{
+  border: none;
+  background-color: transparent;
+  color: var(--fg-normal);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+.button_session > img{
+  margin-right: 0.5em;
+  filter: var(--session-buttons-filter);
+  color: var(--fg-normal);
+}
+
+.button_session:hover{
+  background-color: transparent;
+  opacity: 1;
+}
+
+
+/************************************
+* Main table containing all panels. *
+************************************/
+
+#mainTable{
+  width: 100%;
+}
+
+
+/***************
+* Pupil panel. *
+***************/
+
+#panel_pupils{
+  vertical-align: top;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--panels);
+  min-width: 90ch;
+  width: 90ch;
+  padding: 5px !important;
+}
+
+#addPupil{
+  width: 100%
+}
+
+#getPupilsListFile{
+  display: none
+}
+
+#pupilTableWrapper{
+  height: 500px;
+  overflow-y: scroll
+}
+
+#pupilTable{
+  border: 1px solid var(--border-overlay);
+  background-color: var(--bg-overlay);
+  border-spacing: 0px;
+  border-radius: 5px;
+  width: 100%;
+  border-radius: 10px
+}
+
+#pupilTable > tbody > tr > td{
+  padding-left: 5px;
+  padding-bottom: 2px;
+}
+
+#pupilTable > tbody > tr > td:nth-of-type(1){
+  text-align: right
+}
+
+#pupilTable > tbody > tr > td:last-of-type{
+  padding-right: 5px;
+}
+
+#panel_pupils > .panelBody_top > tbody > tr:first-of-type{
+  vertical-align: bottom;
+  text-align: center
+}
+
+#pupilNumberColumn{
+  text-align: right;
+  width: 2em
+}
+
+#pupilsTable_firstName:hover,
+#pupilsTable_lastName:hover{
+  text-decoration: underline
+}
+
+
+/*****************
+* Subject panel. *
+*****************/
+
+#panel_subjects{
+  padding: 5px !important;
+  background-color: var(--panels);
+  width: 60ch;
+  min-width: 60ch;
+  vertical-align: top;
+  border: 1px solid black;
+  border-radius: 10px
+}
+
+#button_addSubject{
+  width: 100%
+}
+
+#importSubjectList{
+  width: 100%
+}
+
+#getSubjectsListFile{
+  display: none
+}
+
+#panel_subjects > .panelHeader > tbody > tr:nth-of-type(2) > td:nth-of-type(2){
+  border-bottom: 2px solid black !important;
+}
+
+#specialPageSelector,
+#button_addSpecialPage{
+  width: 100%
+}
+
+#input_subjectName{
+  width: calc(100% - 10px - 5px) /* 100 % minus padding-left minus padding-right minus separator */
+}
+
+#input_subjectName,
+#button_deleteSubject,
+#button_moveSubjectDown,
+#button_moveSubjectUp{
+  margin-left: 2px
+}
+
+#list_subjects{
+  height: 200px;
+  width: 100%
+}
+
+#list_subjects option{
+  color: var(--fg-normal);
+}
+
+#list_subjects option:checked{
+  color: var(--fg-prelight);
+  background: linear-gradient(var(--bg-prelight), var(--bg-prelight));
+}
+
+
+/********************************************
+* Subject information and evaluation panel. *
+********************************************/
+
+#panel_evaluation{
+  vertical-align: top;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--panels);
+  width: 60ch;
+  min-width: 60ch;
+  padding: 5px !important;
+}
+
+#defaultPage{
+  display: block
+}
+
+.subjectInfoPage > .panelHeader > tbody > tr:first-of-type,
+.subjectInfoPage > .panelHeader > tbody > tr:nth-of-type(2){
+  vertical-align: top
+}
+
+.subjectInfoPage > .panelBody_top > tbody > tr:first-of-type{
+  vertical-align: bottom
+}
+
+#textarea_subjectContents{
+  height: 200px;
+  resize: none;
+  overflow-y: scroll
+}
+
+#button_applyTeacherToAll{
+  width: 100%
+}
+
+#button_applySubjectContentsToAll{
+  float: right
+}
+
+#heading_evaluation{
+  margin-top: 2em
+}
+
+#textarea_evaluation{
+  height: 200px
+}
+
+
+/* Subpage: eurythmy */
+
+#eurythmyabschlussPage{
+  display: none
+}
+
+#eurythmyabschlussPage > .panelBody_top > tbody > tr:first-child{
+  vertical-align: bottom
+}
+
+#eurythmyTable{
+  border: 1px solid var(--border-overlay);
+  background-color: var(--bg-overlay);
+  border-spacing: 0px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+#eurythmyTable > tbody > tr:first-of-type > td{
+  padding-top: 2px;
+}
+
+#eurythmyTable > tbody > tr > td{
+  padding-left: 5px;
+  padding-bottom: 2px;
+}
+
+#eurythmyTable > tbody > tr > td:last-of-type{
+  padding-right: 5px;
+}
+
+.input_eurythmyRow{
+  width: calc(100% - 10px); /* 100 % – padding-left – padding-right */
+}
+
+#textarea_finalEurythmy_evaluation{
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: scroll
+}
+
+
+/* Subpage: exam thesis (Jahresarbeit). */
+
+#jahresarbeitPage{
+  display: none
+}
+
+#jahresarbeitPage tr:nth-of-type(3) td:nth-of-type(2){
+  width: 100%;
+}
+
+#jahresarbeitPage tr:nth-of-type(3) td:nth-of-type(2) input{
+  width: calc(100% - 10px); /* 100 % – padding-left – padding-right */
+}
+
+#jahresarbeitPage > .panelHeader{
+  width: 100%
+}
+
+#jahresarbeitPage > .panelBody_top > tbody > tr:first-child{
+  vertical-align: bottom
+}
+
+input[class="input_jahresarbeit_topic"]{
+  width: 100%;
+}
+
+#textarea_jahresarbeit_evaluation{
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: scroll
+}
+
+
+/* Subpage: pupils’ play (Klassenspiel). */
+
+#klassenspielPage{
+  display: none
+}
+
+#klassenspielPage > .panelBody_top > tbody > tr:first-child{
+  vertical-align: bottom
+}
+
+#textarea_klassenspiel_contents{
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: scroll
+}
+
+#button_applyKlassenspielContentsToAll{
+  float: right
+}
+
+#heading_klassenspiel_evaluation{
+  margin-top: 2em
+}
+
+#textarea_klassenspiel_evaluation{
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: scroll;
+}
+
+
+/***********************
+* Final remarks panel. *
+***********************/
+
+#panel_finalRemarks{
+  vertical-align: top;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--panels);
+  width: 60ch;
+  min-width: 60ch;
+  padding: 5px;
+}
+
+#checkbox_daysAbsent_print{
+  display: inline-grid;
+  vertical-align: middle;
+  margin-right: 0.5em
+}
+
+#checkbox_daysAbsent_print > span{
+  vertical-align: middle
+}
+
+#panel_finalRemarks > .panelBody_top > tbody > tr:first-child{
+  vertical-align: bottom
+}
+
+#textarea_panel_finalRemarks{
+  width: 100%; height: 200px; resize: none; overflow-y: scroll
+}

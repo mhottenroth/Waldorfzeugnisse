@@ -2,7 +2,7 @@
 goto licenseEnd
 	Script for invoking schoolCert_ANSI.lua, Windows version
 
-	Copyright © 2019 Marcus Hottenroth
+	Copyright © 2023 Marcus Hottenroth
 
 	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
@@ -13,7 +13,4 @@ goto licenseEnd
 chcp 1252
 
 cd "%~dp0/"
-
-set sessionFile=""
-
-cmd /u /c %cd%/ulua/lua.cmd %cd%/schoolCert.lua %sessionFile% 2>%cd%/errors_main.txt
+"%cd%/../data/data_backend/ulua/lua.cmd" "%cd%/../data/data_backend/schoolCert.lua" "%cd%/" 2>%cd%/Fehlerprotokoll.txt

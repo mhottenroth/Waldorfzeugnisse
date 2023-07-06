@@ -1,6 +1,6 @@
 #	Script for invoking schoolCert_UTF-8.lua, Unix version
 #
-#	Copyright © 2019 Marcus Hottenroth
+#	Copyright © 2023 Marcus Hottenroth
 #
 #	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 #
@@ -11,7 +11,4 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$0")"
-
-sessionFile=""
-
-xterm -e "$(pwd)/ulua/lua" "$(pwd)/schoolCert.lua" "$sessionFile" 2>./errors_main.txt
+xterm -hold -e "$(pwd)/../data/data_backend/ulua/lua" "$(pwd)/../data/data_backend/schoolCert.lua" "$(pwd)/" 2>./Fehlerprotokoll.txt

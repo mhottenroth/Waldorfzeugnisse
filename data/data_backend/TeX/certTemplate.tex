@@ -58,7 +58,6 @@
 % Zeilenabstand
 \linespread{1.25}
 
-
 % Schusterjungen (mindestens x Zeilen eines Absatzes auf vorangegangener Seite)
 \clubpenalties 3 10000 10000 1000
 
@@ -102,10 +101,10 @@
 \newcommand{\certHeaderLogo}{%
   \begin{wrapfigure}{R}{\textwidth}
     \vspace{-7\baselineskip}
-    \hspace{-30mm} \includegraphics[width=40mm]{../../data_backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
+    \hspace{-30mm} \includegraphics[width=40mm]{../../data/data_backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
     \vspace{-5.325mm} %\vspace{-5.2mm}
 
-    \hspace{-16.85mm} \fontsize{9.85}{12}\selectfont\extrabold\textbf{PLACE-LOGO} %\hspace{-16.85mm}
+    \hspace{-16.85mm}\fontsize{9.85}{12}\selectfont\extrabold\textbf{PLACE-LOGO} %\hspace{-16.85mm}
   \end{wrapfigure}
 }
 
@@ -188,7 +187,7 @@
     \setlength{\tabcolsep}{0pt}\par
     \begin{tabular}{@{}p{75mm}c}
       PLACE, den \certDateFormat\displaydate{certDate} & \rule{\linewidth-75mm}{0.4pt}\\
-                                                      & Unterschrift der Klassenspielleitung
+                                                       & Unterschrift der Klassenspielleitung
     \end{tabular}
   \egroup
 }
@@ -305,8 +304,10 @@
   %
   \certText{Bemerkungen:}{#1\par}{}{}
 
-  \textbf{Fehltage:} #2 \hspace{7\baselineskip} \textbf{davon unentschuldigt:} #3
-  \par
+  \expandafter\ifx#2\relax
+  \else
+    \textbf{Fehltage:} #2 \hspace{7\baselineskip} \textbf{davon unentschuldigt:} #3\par
+  \fi
   Die in diesem Zeugnis verwendeten Formulierungen sind ihrem eigentlichen sprachlichen Inhalt nach zu verstehen. Arbeitszeugnissen zugrundeliegende Wordcodes fanden hier keine Anwendung.\par
 
   \vspace{5\baselineskip}
