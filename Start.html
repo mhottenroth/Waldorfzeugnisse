@@ -3,9 +3,9 @@
 
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="data/data_gui/main.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="data/gui/main.css" type="text/css" media="screen">
     <title>Waldorfzeugnisprogramm</title>
-    <link rel="shortcut icon" type="image/svg" href="data/data_gui/images/favicon.svg">
+    <link rel="shortcut icon" type="image/svg" href="data/gui/images/favicon.svg">
   </head>
 
   <body>
@@ -68,7 +68,7 @@
                 <!-- Logo and credits. -->
                 <td id="programInfo">
                   <div id="logoAndCredits">
-                    <img id="logo" alt="Logo Waldorfschule" src="data/data_gui/images/LogoWaldorfschule_noCity.svg">
+                    <img id="logo" alt="Logo Waldorfschule" src="data/gui/images/LogoWaldorfschule_noCity.svg">
                     <div id="nameAndCredits">
                       <b id="programName">Zeugnisprogramm</b>
                       <br>
@@ -102,13 +102,13 @@
           <td id="space_beforeSession"></td>
           <td id="sessionOptions">
             <button type="button" class="button_session" onclick="saveSession()">
-              <img class="headerButtonImg" alt="Save" src="./data/data_gui/images/save.svg">Sitzung speichern unter …
+              <img class="headerButtonImg" alt="Save" src="./data/gui/images/save.svg">Sitzung speichern unter …
             </button>
             <button type="button" class="button_session" onclick="document.getElementById('getSessionFileToLoad').click()">
-              <img class="headerButtonImg" alt="Load" src="./data/data_gui/images/load.svg">Sitzung laden …
+              <img class="headerButtonImg" alt="Load" src="./data/gui/images/load.svg">Sitzung laden …
             </button>
             <button type="button" class="button_session" onclick="document.getElementById('getSessionFilesToMerge').click()">
-              <img class="headerButtonImg" alt="Merge" src="./data/data_gui/images/merge.svg">Sitzungsdaten zusammenführen …
+              <img class="headerButtonImg" alt="Merge" src="./data/gui/images/merge.svg">Sitzungsdaten zusammenführen …
             </button>
             <!-- Link which gets »clicked« to save a session. -->
             <a id="saveSession_prompt" href="data:application/json;charset=utf-8," download="Sitzung.json"></a>
@@ -257,10 +257,10 @@
                 </tbody>
               </table>
 
-              <textarea id="textarea_subjectContents" spellcheck=true onchange="deleteExcessSpaces(this)" oninput="checkSyntax(this); updateSession_subjectContents(this)"></textarea>
+              <textarea id="textarea_subjectContents" spellcheck=true onchange="deleteExcessSpaces(this); deleteLineFeeds(this)" oninput="checkSyntax(this); updateSession_subjectContents(this)"></textarea>
               <button type="button" id="button_applySubjectContentsToAll" onclick="applySubjectContentsToAll()">Inhalte auf alle Schüler übertragen</button>
               <div id="heading_evaluation">Zeugnistext für …</div>
-              <textarea id="textarea_evaluation" spellcheck=true oninput="checkSyntax(this); updateSession_subjectEvaluation(this)"></textarea>
+              <textarea id="textarea_evaluation" spellcheck=true oninput="checkSyntax(this); deleteLineFeeds(this); updateSession_subjectEvaluation(this)"></textarea>
             </div>
 
             <!-- Eurythmieabschluss. -->
@@ -371,5 +371,5 @@
       </tbody>
     </table>
   </body>
-  <script type="text/javascript" src="data/data_gui/main.js"></script>
+  <script type="text/javascript" src="data/gui/main.js"></script>
 </html>

@@ -11,4 +11,4 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$0")"
-xterm -hold -e "$(pwd)/../data/data_backend/ulua/lua" "$(pwd)/../data/data_backend/schoolCert.lua" "$(pwd)/" 2>./Fehlerprotokoll.txt
+xterm -hold -e "$(pwd)/../data/backend/ulua/lua" "$(pwd)/../data/backend/schoolCert.lua" "$(pwd)/"

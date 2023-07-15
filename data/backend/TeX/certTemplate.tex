@@ -26,7 +26,7 @@
 % Schriften und Wörterbuch
 \usepackage[ngerman]{babel}
 \setmainfont{TitilliumWeb-Regular.ttf}[
-  Path=../../data_backend/TeX/texmf-dist/fonts/truetype/,
+  Path=../../data/backend/TeX/texmf-dist/fonts/truetype/,
   LetterSpace=0.3,
   Scale=1.0,
   BoldFont=TitilliumWeb-Regular.ttf,
@@ -36,7 +36,7 @@
 ]
 
 \newfontfamily\extrabold{TitilliumWeb-Bold.ttf}[
-  Path=../../data_backend/TeX/texmf-dist/fonts/truetype/,
+  Path=../../data/backend/TeX/texmf-dist/fonts/truetype/,
   FakeStretch=0.99,
   Scale=1.0,
   LetterSpace=0.067,
@@ -101,10 +101,9 @@
 \newcommand{\certHeaderLogo}{%
   \begin{wrapfigure}{R}{\textwidth}
     \vspace{-7\baselineskip}
-    \hspace{-30mm} \includegraphics[width=40mm]{../../data/data_backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
-    \vspace{-5.325mm} %\vspace{-5.2mm}
-
-    \hspace{-16.85mm}\fontsize{9.85}{12}\selectfont\extrabold\textbf{PLACE-LOGO} %\hspace{-16.85mm}
+    \hspace{-30mm} \includegraphics[width=40mm]{../../data/backend/LogoWaldorfschule_noCity.pdf} % – width + margin_right_demanded
+    \vspace{-5.325mm}\par %\vspace{-5.2mm}
+    \hspace{-16mm}\fontsize{9.85}{12}\selectfont\extrabold\textbf{LEIPZIG} %\hspace{-16.85mm}
   \end{wrapfigure}
 }
 
@@ -289,9 +288,7 @@
   \begin{tabular}{@{}L{\linewidth/7}*{6}{|C{\linewidth/7}}}
     \textbf{Notenstufe} & sehr gut & gut & befriedigend & ausreichend & mangelhaft & ungen\"ugend \\
     \hline
-    % following line is a marker; DO NOT DELETE!
-    % Notenpunkte  
-    MARKS-FORMAT%\textbf{Notenpunkte} & 15\textendash{}13 & 12\textendash{}10 & 09\textendash{}07 & 06\textendash{}04 & 03\textendash{}01 & 0
+    MARKS-FORMAT
   \end{tabular}
   }
 }

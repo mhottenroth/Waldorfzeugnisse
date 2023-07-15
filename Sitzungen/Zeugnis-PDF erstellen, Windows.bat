@@ -10,7 +10,8 @@ goto licenseEnd
 
 	You should have received a copy of the GNU General Public License along with this program; if not, see <http://www.gnu.org/licenses/>. 
 :licenseEnd
-chcp 1252
+@chcp 1252
 
-cd "%~dp0/"
-"%cd%/../data/data_backend/ulua/lua.cmd" "%cd%/../data/data_backend/schoolCert.lua" "%cd%/" 2>%cd%/Fehlerprotokoll.txt
+@cd "%~dp0/"
+"%cd%/../data/backend/ulua/lua.cmd" "%cd%/../data/backend/schoolCert.lua" "%cd%/"
+@pause

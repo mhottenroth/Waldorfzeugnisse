@@ -34,7 +34,7 @@ function replaceUmlauts(s)
 end
 
 
--- Replace special TeX characters.
+-- Escape special TeX characters and replace blank lines with paragraph delimiters.
 function escapeTeXchars(s)
   local s = s:gsub("%%", "\\%%")
   s = s:gsub("&", "\\&")
@@ -43,18 +43,19 @@ function escapeTeXchars(s)
 end
 
 
+-- Might not be necessary for current Windows versions. Needs to be tested.
 -- Override the default print command. This is needed for a correct UTF-8 encoding in terminal windows on Windows machines.
 -- To do: Make it accept multiple arguments.
-function print(s)
-  if OS == "Windows" then
-    local handle = io.popen(s .. " | "..baseDir.."/data/data_backend/iconv/bin/iconv.exe -f UTF-8 -t ISO-8859-1 2>&1")
-    local utf8String = handle:read("*all")
-    handle:close()
-    io.write(utf8String .. "\n")
-  else
-    io.write(s .. "\n")
-  end
-end
+--function print(s)
+--  if OS == "Windows" then
+--    local handle = io.popen(s .. " | "..baseDir.."/data/backend/iconv/bin/iconv.exe -f UTF-8 -t ISO-8859-1 2>&1")
+--    local utf8String = handle:read("*all")
+--    handle:close()
+--    io.write(utf8String .. "\n")
+--  else
+--    io.write(s .. "\n")
+--  end
+--end
 
 
 function pathExists(s)
@@ -113,7 +114,7 @@ else
   end
 end
 
-XeTeXBinFile = baseDir.."../data/data_backend/TeX/bin/"..binVersion
+XeTeXBinFile = baseDir.."../data/backend/TeX/bin/"..binVersion
 
 
 -- Gather all session files in the directory of the PDF creation init scripts.
@@ -155,13 +156,13 @@ for _, file in ipairs(sessionFiles) do
   outputDir = baseDir .. file:gsub(".json$", "") .. ", Zeugnisse"
 
   -- Check for missing essential data.
-  if not SESSION[0].class then
+  if not SESSION[1].class then
     print("In der Sitzung wurde keine Klasse angegeben. Sitzung wird übersprungen.\nWeiter mit Enter.")
     io.read()
     goto continue
   end
 
-  if not SESSION[0].place then
+  if not SESSION[1].place then
     print("In der Sitzung wurde kein Ausstellungsort des Zeugnisses angegeben. Sitzung wird übersprungen.\nWeiter mit Enter.")
     io.read()
     goto continue
@@ -190,63 +191,48 @@ for _, file in ipairs(sessionFiles) do
   end
 
 
-  for _, pupil in pairs(SESSION[0].pupils) do
-  --  for pupilKey, pupilValue in pairs(pupil) do
-  --    if type(pupilValue) ~= "table" then
-  --      io.write(pupilKey .. " — " .. pupilValue .. "\n")
-  --    else
-  --      -- pupilValue being a table means it’s the subjects list.
-  --      for _, subject in pairs(pupilValue) do
-  --        for subjectKey, subjectValue in pairs(subject) do
-  --          io.write(subjectKey .. " — " .. subjectValue .. "\n")
-  --        end
-  --      end
-  --    end
-  --  end
-  --end
+  for _, pupil in pairs(SESSION[1].pupils) do
 
-    if pupil.print == "true" then
+    if pupil.print then
       print("Erstelle Zeugnis für " .. pupil.firstName .. " " .. pupil.lastName .. " …")
       
       -- String for the final marks page.
-      local finalMarks = ""
+      local finalMarks = ""da sdad asd asda
     
       -- Load the certificate template into a string.
-      local file_TeXTemplate = io.open(baseDir .. "/data/data_backend/TeX/certTemplate.tex")
+      local file_TeXTemplate = io.open(baseDir .. "../data/backend/TeX/certTemplate.tex")
       local code_TeX = file_TeXTemplate:read("*all")
       file_TeXTemplate:close()    
   
       -- Set certificate data in the TeX string.
       code_TeX = code_TeX:gsub("PUPIL%-NAME", pupil.firstName.." "..pupil.lastName)
-      code_TeX = code_TeX:gsub("PUPIL%-CLASS", SESSION[0].class or "")
-      code_TeX = code_TeX:gsub("YEARHEADER", SESSION[0].year)
-      code_TeX = code_TeX:gsub("PLACE%-LOGO", SESSION[0].place:upper())
-      code_TeX = code_TeX:gsub("PLACE", SESSION[0].place)
+      code_TeX = code_TeX:gsub("PUPIL%-CLASS", SESSION[1].class or "")
+      code_TeX = code_TeX:gsub("YEARHEADER", SESSION[1].year)
+      code_TeX = code_TeX:gsub("PLACE%-LOGO", SESSION[1].place:upper())
+      code_TeX = code_TeX:gsub("PLACE", SESSION[1].place)
   
       -- Set the marks overview table format.
-      if SESSION[0].class:match("[0-9]+A") then
+      if SESSION[1].class:match("[0-9]+A") then
         code_TeX = code_TeX:gsub("MARKS%-FORMAT", '\\textbf{Notenpunkte} & 15\\textendash{}13 & 12\\textendash{}10 & 09\\textendash{}07 & 06\\textendash{}04 & 03\\textendash{}01 & 0')
       else
         code_TeX = code_TeX:gsub("MARKS%-FORMAT", '\\textbf{Note} & 1 & 2 & 3 & 4 & 5 & 6')
       end
   
-      local date_day, date_month, date_year = SESSION[0].date:match("(%d%d)%.(%d%d)%.(%d%d%d%d)")
+      local date_day, date_month, date_year = SESSION[1].date:match("(%d%d)%.(%d%d)%.(%d%d%d%d)")
   
-      code_TeX = code_TeX:gsub("\\newdate{certDate}{01}{01}{1980}", "\\newdate{certDate}{"..date_day.."}{"..date_month.."}{"..date_year.."}")
-  
+      code_TeX = code_TeX:gsub("\\newdate{certDate}{01}{01}{1980}", "\\newdate{certDate}{"..date_day.."}{"..date_month.."}{"..date_year.."}")  
       code_TeX = code_TeX:gsub("\\begin{document}.*", "\\begin{document}")
   
       isFirstRegularSubject = true
   
-      for j = 0, pupil.subjects do
-  
+      for j = 1, #pupil.subjects do
         local s = pupil.subjects[j]
   
         if s.name:match("^Sonderseite: ") then
           if s.name:match("Eurythmieabschluss") then
             local string_works = ""
             if s.works then -- Check this to prevent errors when a subject for eurythmy has been created but no information has been entered.
-              for w = 0, #s.works do
+              for w = 1, #s.works do
                 if s.works[w].author and s.works[w].work then
                   string_works = string_works..s.works[w].author.." & "..s.works[w].work.." \\\\"
                 end
@@ -258,7 +244,6 @@ for _, file in ipairs(sessionFiles) do
           end
           if s.name:match("Jahresarbeit") then
             if s.topic and s.firstReader and s.secondReader and s.evaluation then
-              -- Delete trailing newlines, reduce more than one blankline to one, and finally turn single linebreaks (\n) into paragraph limits.
               code_TeX = code_TeX.."\n  \\finalThesis{"..s.topic.."}{"..s.firstReader.."}{"..s.secondReader.."}{"..s.evaluation.."}"
             end
           end
@@ -270,6 +255,7 @@ for _, file in ipairs(sessionFiles) do
         else
           s.evaluation = s.evaluation and s.evaluation:gsub("^[\n ]*$", "") ~= "" and s.evaluation or nil
           s.contents = s.contents and s.contents:gsub("^[\n ]*$", "") ~= "" and s.contents or nil
+          print("EVAL", s.evaluation, "CONTENTS", s.contens)
           if s.name and (s.evaluation or s.contents) then
             s.evaluation = s.evaluation or ""
             s.contents = s.contents or ""
@@ -277,7 +263,8 @@ for _, file in ipairs(sessionFiles) do
               code_TeX = code_TeX.."\n  \\raisebox{\\baselineskip}{\\hfil\\rule{\\textwidth}{0.4pt}\\hfil}%"
               isFirstRegularSubject = false
             end
-            if j > 0 and pupil.subjects[j-1].name == s.name then
+            -- If a subject had been taught by more than one teacher, print it as a separate block, but omit the subject name heading.
+            if j > 1 and pupil.subjects[j-1].name == s.name then
               code_TeX = code_TeX.."\n  \\certText{}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
             else
               code_TeX = code_TeX.."\n  \\certText{"..s.name.."}{"..(s.contents or "").."}{"..(s.evaluation or "").."}{"..(s.teacher or "").."}"
@@ -290,10 +277,12 @@ for _, file in ipairs(sessionFiles) do
         end
       end
   
+      -- Compose the final marks table entries string.
       if finalMarks ~= "" then
         code_TeX = code_TeX.."\n  \\finalMarks{"..finalMarks.."}"
       end
   
+      -- Decide whether or not to print the number of absence days.
       if pupil.daysAbsent_print then
         code_TeX = code_TeX.."\n  \\finalPage{"..(pupil.finalRemarks or "\\textit{keine}").."}{"..(pupil.daysAbsent or "–").."}{"..(pupil.daysAbsent_unexplained or "–").."}\n\\end{document}"
       else
@@ -331,7 +320,7 @@ for _, file in ipairs(sessionFiles) do
         -- Revert umlaut changes by renaming final files;
         -- delete existing file with correct name so renaming can be successful.
         if pupil.firstName ~= replaceUmlauts(pupil.firstName) or pupil.lastName ~= replaceUmlauts(pupil.lastName) then
-          loadfile("../data_backend/renameUTF-8.lua")(outputDir, replaceUmlauts(pupil.firstName).." "..replaceUmlauts(pupil.lastName))
+          loadfile("../backend/renameUTF-8.lua")(outputDir, replaceUmlauts(pupil.firstName).." "..replaceUmlauts(pupil.lastName))
         end
         
         -- delete expendable files (*.tex, *.log, *.aux)
@@ -344,6 +333,6 @@ for _, file in ipairs(sessionFiles) do
   ::continue::
 end
 
-print("\n\nProzess abgeschlossen.\n\nEnter zum Schließen des Fensters.")
+print("\n\nProzess abgeschlossen.\n\nZum Schließen des Fensters Enter drücken.")
 io.read()
 

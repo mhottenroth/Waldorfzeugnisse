@@ -173,9 +173,14 @@ function checkSyntax(e){
   }
 
   text = text.replace(/ - /g, " – ")
-  text = text.replace(/\n$/, '')
 
   e.value = text
+}
+
+
+// Some text areas are not allowed to contain blank lines.
+function deleteLineFeeds(e){
+  e.value = e.value.replace(/\n$/, '')
 }
 
 
@@ -301,8 +306,8 @@ function addPupil(firstName, lastName, guionly){
   newRow.innerHTML = '<td align=right><button type="button" title="Schüler aus der Liste löschen" onclick="deletePupil(this); updateFinalRemarksPanel()">Löschen</td>\
     <td align=center class="checkboxCell"><input type="checkbox" name="printPupilCheckbox" checked onclick="updateSession_togglePrint(this)"></td>\
     <td align=right><span>' + (lastListIndex + 1) + '</span></td>\
-    <td><input type="text" class="input_name" value="' + fn + '" oninput="updateSession_firstName(this); updateFinalRemarksPanel(); updateSubjectPanel()" onchange="deleteExcessSpaces(this); neutralizePupilSorting(\'firstName\')"></td>\
-    <td><input type="text" class="input_name" value="' + ln + '" oninput="updateSession_lastName(this)" onchange="deleteExcessSpaces(this); neutralizePupilSorting(\'lastName\')"></td>\
+    <td><input type="text" tabindex="' + ((lastListIndex + 1) * 2 - 1) + '" class="input_name" value="' + fn + '" oninput="updateSession_firstName(this); updateFinalRemarksPanel(); updateSubjectPanel()" onchange="deleteExcessSpaces(this); neutralizePupilSorting(\'firstName\')"></td>\
+    <td><input type="text" tabindex="' + ((lastListIndex + 1) * 2) + '" class="input_name" value="' + ln + '" oninput="updateSession_lastName(this)" onchange="deleteExcessSpaces(this); neutralizePupilSorting(\'lastName\')"></td>\
     <td align=center class="radioCell"><input type="radio" onclick="updateSubjectPanel(); updateFinalRemarksPanel()" name="radio_pupil"></td>'
   document.getElementById('pupilTable').getElementsByTagName('tbody')[0].appendChild(newRow);
 
