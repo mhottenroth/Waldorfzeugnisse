@@ -136,7 +136,7 @@ for i, v in ipairs(sessionFiles) do print("— " .. v) end
 io.write("\n" .. (#sessionFiles > 1 and "Alle d" or "D") .. "iese Datei" .. (#sessionFiles > 1 and "en" or "") .. " zu PDF-Zeugnissen verarbeiten?\n[j]a/[n]ein: ")
 doConvert = io.read() -- Read only one byte/character.
 
-if doConvert ~= "j" then print("Programm beendet.") os.exit() end
+if doConvert ~= "j" then print("Programm beendet.") os.exit() else print("") end
 
 
 
@@ -194,10 +194,10 @@ for _, file in ipairs(sessionFiles) do
   for _, pupil in pairs(SESSION[1].pupils) do
 
     if pupil.print then
-      print("Erstelle Zeugnis für " .. pupil.firstName .. " " .. pupil.lastName .. " …")
+      print("— Erstelle Zeugnis für " .. pupil.firstName .. " " .. pupil.lastName .. " …")
       
       -- String for the final marks page.
-      local finalMarks = ""da sdad asd asda
+      local finalMarks = ""
     
       -- Load the certificate template into a string.
       local file_TeXTemplate = io.open(baseDir .. "../data/backend/TeX/certTemplate.tex")
@@ -255,7 +255,6 @@ for _, file in ipairs(sessionFiles) do
         else
           s.evaluation = s.evaluation and s.evaluation:gsub("^[\n ]*$", "") ~= "" and s.evaluation or nil
           s.contents = s.contents and s.contents:gsub("^[\n ]*$", "") ~= "" and s.contents or nil
-          print("EVAL", s.evaluation, "CONTENTS", s.contens)
           if s.name and (s.evaluation or s.contents) then
             s.evaluation = s.evaluation or ""
             s.contents = s.contents or ""
@@ -302,8 +301,8 @@ for _, file in ipairs(sessionFiles) do
       -- compile TeX file to PDF; execute command twice to get correct number of last page within PDF document
       if OS == "Linux" or OS == "Darwin" then
         os.execute("cd \""..outputDir.."\"; "..
-          " \""..XeTeXBinFile.."\" -halt-on-error \""..pupil.firstName.." "..pupil.lastName..".tex\" ; "..
-          " \""..XeTeXBinFile.."\" -halt-on-error \""..pupil.firstName.." "..pupil.lastName..".tex\" "
+          " \""..XeTeXBinFile.."\" -halt-on-error \""..pupil.firstName.." "..pupil.lastName..".tex\" 1>/dev/null; "..
+          " \""..XeTeXBinFile.."\" -halt-on-error \""..pupil.firstName.." "..pupil.lastName..".tex\" 1>/dev/null"
         )
   
         -- Cleanup.
@@ -333,6 +332,5 @@ for _, file in ipairs(sessionFiles) do
   ::continue::
 end
 
-print("\n\nProzess abgeschlossen.\n\nZum Schließen des Fensters Enter drücken.")
-io.read()
+print("\n\nGenerierung beendet.\n\nDas Fenster kann geschlossen werden.")
 
