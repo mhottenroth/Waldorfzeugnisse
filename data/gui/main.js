@@ -242,10 +242,10 @@ function getSelectedPupil(){
 
 function neutralizePupilSorting(category){
   if (category == "firstName"){
-    document.getElementById("pupilsTable_firstName").innerText = "Vorname •"
+    document.getElementById("pupilsTable_firstName").innerText = "Vorname ◉"
     document.getElementById("pupilsTable_firstName").setAttribute("data-order", "none")
   } else if (category == "lastName"){
-    document.getElementById("pupilsTable_lastName").innerText = "Nachname •"
+    document.getElementById("pupilsTable_lastName").innerText = "Nachname ◉"
     document.getElementById("pupilsTable_lastName").setAttribute("data-order", "none")
   }
 }
@@ -283,10 +283,10 @@ function sortPupilsTable(e, category){
 
   if (e.dataset.order == "none" || e.dataset.order == "desc"){
     e.setAttribute('data-order', "asc")
-    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ⏶"
+    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ▲"
   } else {
     e.setAttribute('data-order', "desc")
-    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ⏷"
+    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ▼"
   }
 
   neutralizePupilSorting(category == "firstName" ? "lastName" : "firstName")
