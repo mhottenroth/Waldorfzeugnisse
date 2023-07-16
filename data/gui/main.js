@@ -283,10 +283,10 @@ function sortPupilsTable(e, category){
 
   if (e.dataset.order == "none" || e.dataset.order == "desc"){
     e.setAttribute('data-order', "asc")
-    e.innerText = "Nachname ⏶"
+    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ⏶"
   } else {
     e.setAttribute('data-order', "desc")
-    e.innerText = "Nachname ⏷"
+    e.innerText = (category == "firstName" ? "Vorname" : "Nachname") + " ⏷"
   }
 
   neutralizePupilSorting(category == "firstName" ? "lastName" : "firstName")
