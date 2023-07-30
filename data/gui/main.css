@@ -599,7 +599,8 @@ input[type="radio"]:after{
 
 #pupilsTable_firstName:hover,
 #pupilsTable_lastName:hover{
-  text-decoration: underline
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 
