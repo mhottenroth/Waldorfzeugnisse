@@ -518,7 +518,7 @@ function updateSession_subjectContents(e){
 
 
 function updateSession_subjectEvaluation(e){
-  SESSION[0].pupils[getSelectedPupil().index].subjects[getSelectedSubject().index].evaluation = e.value.replace(/{[Vv][Oo][Rr][Nn][Aa][Mm][Ee]}/g, getSelectedPupil().firstName)
+  SESSION[0].pupils[getSelectedPupil().index].subjects[getSelectedSubject().index].evaluation = e.value//.replace(/{[Vv][Oo][Rr][Nn][Aa][Mm][Ee]}/g, getSelectedPupil().firstName)
 }
 
 
