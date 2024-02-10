@@ -1,0 +1,8 @@
+{
+  "name": "Waldimonium",
+  "version": "2024.01.14",
+  "description": "Create pupils’ certificates for Waldorf schools.",
+  "main": "main.js",
+  "author": "Marcus Hottenroth",
+  "license": "GPLv3"
+}
