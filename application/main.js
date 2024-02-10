@@ -20,7 +20,7 @@ function createWindow() {
   )  
   window.loadFile('index.html')
   window.maximize()
-  window.openDevTools();
+  //window.openDevTools()
 
   window.on("ready-to-show",
     () => {
